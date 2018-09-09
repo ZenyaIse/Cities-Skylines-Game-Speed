@@ -17,7 +17,7 @@ namespace GameSpeedMod
                 s.WriteBool(m.values.NoReward);
                 s.WriteBool(m.values.IsHardMode);
 
-                s.WriteInt32(m.DemandRestorePercent);
+                s.WriteInt32(m.demandRestoreFrameCounter);
                 string[] builtMonumentsArray = new string[m.BuiltMonuments.Count];
                 m.BuiltMonuments.CopyTo(builtMonumentsArray);
                 s.WriteUniqueStringArray(builtMonumentsArray);
@@ -31,27 +31,48 @@ namespace GameSpeedMod
                 m.values.NoReward = s.ReadBool();
                 m.values.IsHardMode = s.ReadBool();
 
-                m.DemandRestorePercent = s.ReadInt32();
+                m.demandRestoreFrameCounter = s.ReadInt32();
                 string[] builtMonumentsArray = s.ReadUniqueStringArray();
                 m.BuiltMonuments = new HashSet<string>(builtMonumentsArray);
-
-                Debug.Log(">>> GameSpeedMod data loaded.");
             }
 
             public void AfterDeserialize(DataSerializer s)
             {
-                // Empty
+                Debug.Log(">>> GameSpeedMod data loaded.");
             }
         }
+
+        protected const int framesPerDay = 585; // See m_timePerFrame from SimulationManager.Awake()
 
         public string[] GameSpeeds = new string[] { "Normal", "Slow", "Epic", "Marathon", "1001 Nights" };
 
         public GameSpeedOptionsSerializable values = new GameSpeedOptionsSerializable();
         public GameSpeedParameters Parameters;
 
-        public int DemandRestorePercent = 0;
+        private int demandRestoreFrameCounter = 0;
         public HashSet<string> BuiltMonuments = new HashSet<string>();
 
+        public int GetDemandRestorePercent()
+        {
+            int demandRestorePercent = demandRestoreFrameCounter * 100 / (framesPerDay * 14);
+
+            if (demandRestorePercent > 100) return 100;
+
+            return demandRestorePercent;
+        }
+
+        public void StartAdvertisingCampain()
+        {
+            demandRestoreFrameCounter = framesPerDay * 21; // Three weeks campaign
+        }
+
+        public void OnAfterSimulationFrame()
+        {
+            if (demandRestoreFrameCounter > 0)
+            {
+                demandRestoreFrameCounter--;
+            }
+        }
 
         private GameSpeedManager()
         {
@@ -75,7 +96,7 @@ namespace GameSpeedMod
         {
             if (BuiltMonuments.Add(name))
             {
-                DemandRestorePercent = 150;
+                StartAdvertisingCampain();
             }
         }
     }

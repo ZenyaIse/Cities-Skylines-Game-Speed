@@ -31,7 +31,7 @@ namespace GameSpeedMod
             }
 
             int demandMaxValue = gs.Parameters.DemandMaxValue;
-            int demandRestorePercent = Mathf.Min(gs.DemandRestorePercent, 100);
+            int demandRestorePercent = gs.GetDemandRestorePercent();
 
             demandMaxValue += (100 - demandMaxValue) * demandRestorePercent / 100;
 
@@ -45,7 +45,7 @@ namespace GameSpeedMod
             GameSpeedManager gs = Singleton<GameSpeedManager>.instance;
 
             float k = gs.Parameters.DemandMaxValue * 0.01f;
-            float r = Mathf.Min(gs.DemandRestorePercent, 100) * 0.01f;
+            float r = gs.GetDemandRestorePercent() * 0.01f;
 
             demandValue = (int)(demandValue / (k + (1 - k) * r));
 

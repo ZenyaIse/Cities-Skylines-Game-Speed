@@ -12,20 +12,28 @@ namespace GameSpeedMod
         public override void OnLevelLoaded(LoadMode mode)
         {
             EconomyManager em = Singleton<EconomyManager>.instance;
-            GameSpeedManager gs = Singleton<GameSpeedManager>.instance;
+            GameSpeedManager gsm = Singleton<GameSpeedManager>.instance;
 
-            if (mode == LoadMode.NewGame)
+            if (mode == LoadMode.NewGame || mode == LoadMode.NewGameFromScenario)
             {
-                int moneyToAdd = 40 * (gs.Parameters.ConstructionCostMultiplier - 1) * 100000;
+                int moneyToAdd = 40 * (gsm.Parameters.ConstructionCostMultiplier - 1) * 100000;
                 em.AddResource(EconomyManager.Resource.LoanAmount, moneyToAdd, ItemClass.Service.None, ItemClass.SubService.None, ItemClass.Level.None);
+
+                gsm.StartAdvertisingCampain();
             }
 
-            if (mode == LoadMode.NewGame || mode == LoadMode.LoadGame)
+            if (mode == LoadMode.NewGame || mode == LoadMode.LoadGame || mode == LoadMode.NewGameFromScenario)
             {
                 Loans.SetLoans();
-            }
 
-            createAdvertisingCampaignPanel();
+                createAdvertisingCampaignPanel();
+
+                Singleton<UnlockManager>.instance.EventMilestoneUnlocked += delegate (MilestoneInfo info)
+                {
+                    Debug.Log("Milestone unlocked: " + info.m_name);
+                    gsm.StartAdvertisingCampain();
+                };
+            }
         }
 
         public override void OnLevelUnloading()
@@ -79,37 +87,5 @@ namespace GameSpeedMod
                 }
             }
         }
-
-        //private void addClickEventToDemandPanel()
-        //{
-        //    UIView view = UIView.GetAView();
-        //    if (view != null)
-        //    {
-        //        UIComponent infoPanel = view.FindUIComponent("InfoPanel");
-        //        if (infoPanel != null)
-        //        {
-        //            infoPanel.eventClick += demandEventClick;
-        //            UIComponent demandBack = infoPanel.Find("DemandBack");
-        //            if (demandBack != null)
-        //            {
-        //                demandBack.eventClicked += demandEventClick;
-        //                UIPanel demandPanel = (UIPanel)demandBack.Find("Demand");
-        //                if (demandPanel != null)
-        //                {
-        //                    Debug.Log("clicked event added");
-        //                    demandPanel.eventDoubleClick += demandEventClick;
-
-        //                    UISlider residentialDemandSlider = demandPanel.Find<UISlider>("ResidentialDemand");
-        //                    residentialDemandSlider.eventDoubleClick += demandEventClick;
-        //                    UISlicedSprite ss = residentialDemandSlider.Find<UISlicedSprite>("Sliced Sprite");
-        //                    ss.eventDoubleClick += demandEventClick;
-
-        //                    //UISlider commercialDemandSlider = demandPanel.Find<UISlider>("CommercialDemand");
-        //                    //UISlider industryOfficeDemandSlider = demandPanel.Find<UISlider>("IndustryOfficeDemand");
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
     }
 }

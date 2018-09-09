@@ -8,7 +8,6 @@ namespace GameSpeedMod
     public class AdvertisingCampaignPanel : UIPanel
     {
         public int Counter = 0;
-        private bool isVisibleOverride = false;
         private UIProgressBar currentEffectivenessProgressBar;
         private UILabel demandInfluenceLabel;
         private UILabel residentialDemandInfluenceLabel;
@@ -77,7 +76,7 @@ namespace GameSpeedMod
             int moneyToTake = getCostOfAdCampaign() * 100;
             if (em.LastCashAmount >= moneyToTake)
             {
-                Singleton<GameSpeedManager>.instance.DemandRestorePercent = 150;
+                Singleton<GameSpeedManager>.instance.StartAdvertisingCampain();
 
                 em.AddResource(EconomyManager.Resource.LoanAmount, -moneyToTake, ItemClass.Service.None, ItemClass.SubService.None, ItemClass.Level.None);
 
@@ -146,7 +145,7 @@ namespace GameSpeedMod
         private void updateControls()
         {
             int demandMaxValue = Singleton<GameSpeedManager>.instance.Parameters.DemandMaxValue;
-            int demandRestorePercent = Mathf.Min(Singleton<GameSpeedManager>.instance.DemandRestorePercent, 100);
+            int demandRestorePercent = Singleton<GameSpeedManager>.instance.GetDemandRestorePercent();
 
             int residentialDemand = Mathf.Max(0, Singleton<ZoneManager>.instance.m_actualResidentialDemand);
             int commercialDemand = Mathf.Max(0, Singleton<ZoneManager>.instance.m_actualCommercialDemand);
