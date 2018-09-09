@@ -27,7 +27,7 @@
                 case 1: // Slow
                     AreaCostMultiplier = 3;
                     MilestonePopulationThreshholdMultiplier = 1.25f;
-                    DemandMaxValue = 80;
+                    DemandMaxValue = 70;
                     LoanMultiplier = 2;
                     ConstructionCostMultiplier = 2;
                     AdvertisingCampaignBaseCost = 500;
@@ -37,7 +37,7 @@
                 case 2: // Epic
                     AreaCostMultiplier = 5;
                     MilestonePopulationThreshholdMultiplier = 1.5f;
-                    DemandMaxValue = 60;
+                    DemandMaxValue = 50;
                     LoanMultiplier = 3;
                     ConstructionCostMultiplier = 3;
                     AdvertisingCampaignBaseCost = 1000;
@@ -46,7 +46,7 @@
                 case 3: // Marathon
                     AreaCostMultiplier = 10;
                     MilestonePopulationThreshholdMultiplier = 1.75f;
-                    DemandMaxValue = 50;
+                    DemandMaxValue = 40;
                     LoanMultiplier = 4;
                     ConstructionCostMultiplier = 5;
                     AdvertisingCampaignBaseCost = 2000;
@@ -56,7 +56,7 @@
                 case 4: // 1001 Nights
                     AreaCostMultiplier = 20;
                     MilestonePopulationThreshholdMultiplier = 2.0f;
-                    DemandMaxValue = 40;
+                    DemandMaxValue = 30;
                     LoanMultiplier = 5;
                     ConstructionCostMultiplier = 8;
                     AdvertisingCampaignBaseCost = 4000;
