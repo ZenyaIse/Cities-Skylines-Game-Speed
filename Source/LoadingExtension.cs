@@ -2,6 +2,7 @@
 using ColossalFramework;
 using ColossalFramework.UI;
 using UnityEngine;
+using System.Text.RegularExpressions;
 
 namespace GameSpeedMod
 {
@@ -19,7 +20,7 @@ namespace GameSpeedMod
                 int moneyToAdd = 40 * (gsm.Parameters.ConstructionCostMultiplier - 1) * 100000;
                 em.AddResource(EconomyManager.Resource.LoanAmount, moneyToAdd, ItemClass.Service.None, ItemClass.SubService.None, ItemClass.Level.None);
 
-                gsm.StartAdvertisingCampain();
+                gsm.StartAdvertisingCampaign();
             }
 
             if (mode == LoadMode.NewGame || mode == LoadMode.LoadGame || mode == LoadMode.NewGameFromScenario)
@@ -30,8 +31,11 @@ namespace GameSpeedMod
 
                 Singleton<UnlockManager>.instance.EventMilestoneUnlocked += delegate (MilestoneInfo info)
                 {
-                    Debug.Log("Milestone unlocked: " + info.m_name);
-                    gsm.StartAdvertisingCampain();
+                    if (Regex.IsMatch(info.m_name, @"^Milestone\d+$"))
+                    {
+                        Debug.Log("GameSpeedMod >>> Started advertising campaign because " + info.m_name + " unlocked: ");
+                        gsm.StartAdvertisingCampaign();
+                    }
                 };
             }
         }

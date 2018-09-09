@@ -61,7 +61,7 @@ namespace GameSpeedMod
             return demandRestorePercent;
         }
 
-        public void StartAdvertisingCampain()
+        public void StartAdvertisingCampaign()
         {
             demandRestoreFrameCounter = framesPerDay * 21; // Three weeks campaign
         }
@@ -96,7 +96,7 @@ namespace GameSpeedMod
         {
             if (BuiltMonuments.Add(name))
             {
-                StartAdvertisingCampain();
+                StartAdvertisingCampaign();
             }
         }
     }

@@ -13,7 +13,7 @@ namespace GameSpeedMod
         private UILabel residentialDemandInfluenceLabel;
         private UILabel commercialDemandInfluenceLabel;
         private UILabel workpaceDemandInfluenceLabel;
-        private UIButton fundCampainBtn;
+        private UIButton fundCampaignBtn;
 
         public override void Awake()
         {
@@ -53,14 +53,14 @@ namespace GameSpeedMod
             workpaceDemandInfluenceLabel = addLabel(y);
             y += h;
 
-            fundCampainBtn = AddUIComponent<UIButton>();
-            fundCampainBtn.normalBgSprite = "ButtonMenu";
-            fundCampainBtn.disabledBgSprite = "ButtonMenuDisabled";
-            //fundCampainBtn.focusedBgSprite = "ButtonMenuFocused";
-            fundCampainBtn.hoveredBgSprite = "ButtonMenuHovered";
-            fundCampainBtn.position = new Vector3(10, y);
-            fundCampainBtn.size = new Vector2(250, 50);
-            fundCampainBtn.eventClick += FundCampainBtn_eventClick;
+            fundCampaignBtn = AddUIComponent<UIButton>();
+            fundCampaignBtn.normalBgSprite = "ButtonMenu";
+            fundCampaignBtn.disabledBgSprite = "ButtonMenuDisabled";
+            //fundCampaignBtn.focusedBgSprite = "ButtonMenuFocused";
+            fundCampaignBtn.hoveredBgSprite = "ButtonMenuHovered";
+            fundCampaignBtn.position = new Vector3(10, y);
+            fundCampaignBtn.size = new Vector2(250, 50);
+            fundCampaignBtn.eventClick += FundCampaignBtn_eventClick;
 
             UIButton closeBtn = AddUIComponent<UIButton>();
             closeBtn.position = new Vector3(230, -5);
@@ -69,14 +69,14 @@ namespace GameSpeedMod
             closeBtn.eventClick += closeBtn_eventClick;
         }
 
-        private void FundCampainBtn_eventClick(UIComponent component, UIMouseEventParameter eventParam)
+        private void FundCampaignBtn_eventClick(UIComponent component, UIMouseEventParameter eventParam)
         {
             EconomyManager em = Singleton<EconomyManager>.instance;
 
             int moneyToTake = getCostOfAdCampaign() * 100;
             if (em.LastCashAmount >= moneyToTake)
             {
-                Singleton<GameSpeedManager>.instance.StartAdvertisingCampain();
+                Singleton<GameSpeedManager>.instance.StartAdvertisingCampaign();
 
                 em.AddResource(EconomyManager.Resource.LoanAmount, -moneyToTake, ItemClass.Service.None, ItemClass.SubService.None, ItemClass.Level.None);
 
@@ -163,7 +163,7 @@ namespace GameSpeedMod
                 residentialDemandInfluenceLabel.text = string.Format("Residential: +{0}", residentialDemand);
                 commercialDemandInfluenceLabel.text = string.Format("Commercial: +{0}", commercialDemand);
                 workpaceDemandInfluenceLabel.text = string.Format("Industry and office: +{0}", workplaceDemand);
-                fundCampainBtn.enabled = false;
+                fundCampaignBtn.enabled = false;
             }
             else
             {
@@ -171,10 +171,10 @@ namespace GameSpeedMod
                 residentialDemandInfluenceLabel.text = string.Format("Residential: +{0}", residentialDemandFunded);
                 commercialDemandInfluenceLabel.text = string.Format("Commercial: +{0}", commercialDemandFunded);
                 workpaceDemandInfluenceLabel.text = string.Format("Industry and office: +{0}", workplaceDemandFunded);
-                fundCampainBtn.enabled = true;
+                fundCampaignBtn.enabled = true;
             }
 
-            fundCampainBtn.text = string.Format("Funding an ad campaign\n(Cost {0})", getCostOfAdCampaign().ToString(Settings.moneyFormat, LocaleManager.cultureInfo));
+            fundCampaignBtn.text = string.Format("Funding an ad campaign\n(Cost {0})", getCostOfAdCampaign().ToString(Settings.moneyFormat, LocaleManager.cultureInfo));
         }
 
         private int getPopulation()
