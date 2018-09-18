@@ -10,6 +10,7 @@ namespace GameSpeedMod
         public int Counter = 0;
         private UIProgressBar currentEffectivenessProgressBar;
         private UILabel demandInfluenceLabel;
+        private UILabel campaignEffectivenessLabel;
         private UILabel residentialDemandInfluenceLabel;
         private UILabel commercialDemandInfluenceLabel;
         private UILabel workpaceDemandInfluenceLabel;
@@ -39,7 +40,7 @@ namespace GameSpeedMod
             int y = -50;
             int h = -25;
 
-            addLabel(y, "Current effectiveness:");
+            campaignEffectivenessLabel = addLabel(y, "Current effectiveness:");
             y += h;
             currentEffectivenessProgressBar = addProgressBar(y);
             y += h;
@@ -144,8 +145,10 @@ namespace GameSpeedMod
 
         private void updateControls()
         {
-            int demandMaxValue = Singleton<GameSpeedManager>.instance.Parameters.DemandMaxValue;
-            int demandRestorePercent = Singleton<GameSpeedManager>.instance.GetDemandRestorePercent();
+            GameSpeedManager gsm = Singleton<GameSpeedManager>.instance;
+
+            int demandMaxValue = gsm.Parameters.DemandMaxValue;
+            int demandRestorePercent = gsm.GetDemandRestorePercent();
 
             int residentialDemand = Mathf.Max(0, Singleton<ZoneManager>.instance.m_actualResidentialDemand);
             int commercialDemand = Mathf.Max(0, Singleton<ZoneManager>.instance.m_actualCommercialDemand);
@@ -159,19 +162,19 @@ namespace GameSpeedMod
 
             if (demandRestorePercent > 0)
             {
+                campaignEffectivenessLabel.text = string.Format("Effectiveness ({0} days left):", gsm.CampaignDaysLeft);
                 demandInfluenceLabel.text = "Current target demand";
-                residentialDemandInfluenceLabel.text = string.Format("Residential: +{0}", residentialDemand);
-                commercialDemandInfluenceLabel.text = string.Format("Commercial: +{0}", commercialDemand);
-                workpaceDemandInfluenceLabel.text = string.Format("Industry and office: +{0}", workplaceDemand);
-                fundCampaignBtn.enabled = false;
+                residentialDemandInfluenceLabel.text = string.Format("Residential: {0}", residentialDemand);
+                commercialDemandInfluenceLabel.text = string.Format("Commercial: {0}", commercialDemand);
+                workpaceDemandInfluenceLabel.text = string.Format("Industry and office: {0}", workplaceDemand);
             }
             else
             {
+                campaignEffectivenessLabel.text = "No current campaign";
                 demandInfluenceLabel.text = "Target demand if funded";
-                residentialDemandInfluenceLabel.text = string.Format("Residential: +{0}", residentialDemandFunded);
-                commercialDemandInfluenceLabel.text = string.Format("Commercial: +{0}", commercialDemandFunded);
-                workpaceDemandInfluenceLabel.text = string.Format("Industry and office: +{0}", workplaceDemandFunded);
-                fundCampaignBtn.enabled = true;
+                residentialDemandInfluenceLabel.text = string.Format("Residential: {0}", residentialDemandFunded);
+                commercialDemandInfluenceLabel.text = string.Format("Commercial: {0}", commercialDemandFunded);
+                workpaceDemandInfluenceLabel.text = string.Format("Industry and office: {0}", workplaceDemandFunded);
             }
 
             fundCampaignBtn.text = string.Format("Funding an ad campaign\n(Cost {0})", getCostOfAdCampaign().ToString(Settings.moneyFormat, LocaleManager.cultureInfo));

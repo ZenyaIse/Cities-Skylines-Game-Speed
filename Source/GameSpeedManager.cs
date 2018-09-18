@@ -63,7 +63,7 @@ namespace GameSpeedMod
 
         public void StartAdvertisingCampaign()
         {
-            demandRestoreFrameCounter = framesPerDay * 21; // Three weeks campaign
+            demandRestoreFrameCounter += framesPerDay * 28; // Four weeks campaign
         }
 
         public void OnAfterSimulationFrame()
@@ -71,6 +71,14 @@ namespace GameSpeedMod
             if (demandRestoreFrameCounter > 0)
             {
                 demandRestoreFrameCounter--;
+            }
+        }
+
+        public int CampaignDaysLeft
+        {
+            get
+            {
+                return demandRestoreFrameCounter / framesPerDay;
             }
         }
 
