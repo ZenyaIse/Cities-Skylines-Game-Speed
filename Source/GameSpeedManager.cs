@@ -96,7 +96,11 @@ namespace GameSpeedMod
 
         public void AfterOptionChanged()
         {
+            Loans.ResetLoans();
+            LoadingExtension.ResetParkVisitorLevelupRequirement();
             Parameters = new GameSpeedParameters(values.GameSpeedIndex);
+            Loans.SetLoans();
+            LoadingExtension.SetParkVisitorLevelupRequirement();
             values.Save();
         }
 

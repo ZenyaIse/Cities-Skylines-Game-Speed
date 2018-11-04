@@ -26,6 +26,7 @@ namespace GameSpeedMod
             if (mode == LoadMode.NewGame || mode == LoadMode.LoadGame || mode == LoadMode.NewGameFromScenario)
             {
                 Loans.SetLoans();
+                SetParkVisitorLevelupRequirement();
 
                 createAdvertisingCampaignPanel();
 
@@ -43,10 +44,13 @@ namespace GameSpeedMod
         public override void OnLevelUnloading()
         {
             Loans.ResetLoans();
+            ResetParkVisitorLevelupRequirement();
         }
 
         private void createAdvertisingCampaignPanel()
         {
+            if (adPanel != null) return;
+
             UIView v = UIView.GetAView();
             adPanel = v.AddUIComponent(typeof(AdvertisingCampaignPanel)) as AdvertisingCampaignPanel;
             //GameObject obj = new GameObject("AdvertisingCampaignPanel");
@@ -89,6 +93,33 @@ namespace GameSpeedMod
                 {
                     adPanel.isVisible = !adPanel.isVisible;
                 }
+            }
+        }
+
+
+        public static void SetParkVisitorLevelupRequirement()
+        {
+            GameSpeedManager gsm = Singleton<GameSpeedManager>.instance;
+            DistrictManager dm = Singleton<DistrictManager>.instance;
+            //System.Text.StringBuilder sb = new System.Text.StringBuilder("m_parkProperties: ");
+            for (int i = 0; i < dm.m_properties.m_parkProperties.m_parkLevelInfo.Length; i++)
+            {
+                //sb.Append(dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement.ToString() + ",");
+                dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement =
+                    dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement * gsm.Parameters.ParkVisitorLevelupRequirementMultiplier10 / 10;
+            }
+            //Original values: 0,0,0,0,0,0,0,500,2500,5000,10000,0,0,500,2500,5000,10000,0,0,500,2500,5000,10000,0,0,500,2500,5000,10000,0
+            //Debug.Log(sb.ToString());
+        }
+
+        public static void ResetParkVisitorLevelupRequirement()
+        {
+            GameSpeedManager gsm = Singleton<GameSpeedManager>.instance;
+            DistrictManager dm = Singleton<DistrictManager>.instance;
+            for (int i = 0; i < dm.m_properties.m_parkProperties.m_parkLevelInfo.Length; i++)
+            {
+                dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement =
+                    dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement * 10 / gsm.Parameters.ParkVisitorLevelupRequirementMultiplier10;
             }
         }
     }

@@ -9,6 +9,7 @@
         public int ConstructionCostMultiplier;
         public int AdvertisingCampaignBaseCost;
         public int AdvertisingCampaignCostPer100Pop;
+        public int ParkVisitorLevelupRequirementMultiplier10;
 
         public GameSpeedParameters(int gameSpeedIndex)
         {
@@ -22,6 +23,7 @@
                     ConstructionCostMultiplier = 1;
                     AdvertisingCampaignBaseCost = 0;
                     AdvertisingCampaignCostPer100Pop = 0;
+                    ParkVisitorLevelupRequirementMultiplier10 = 10;
                     break;
 
                 case 1: // Slow
@@ -32,6 +34,7 @@
                     ConstructionCostMultiplier = 2;
                     AdvertisingCampaignBaseCost = 500;
                     AdvertisingCampaignCostPer100Pop = 50;
+                    ParkVisitorLevelupRequirementMultiplier10 = 14;
                     break;
 
                 case 2: // Epic
@@ -42,7 +45,9 @@
                     ConstructionCostMultiplier = 3;
                     AdvertisingCampaignBaseCost = 1000;
                     AdvertisingCampaignCostPer100Pop = 100;
+                    ParkVisitorLevelupRequirementMultiplier10 = 20;
                     break;
+
                 case 3: // Marathon
                     AreaCostMultiplier = 10;
                     MilestonePopulationThreshholdMultiplier = 1.75f;
@@ -51,6 +56,7 @@
                     ConstructionCostMultiplier = 5;
                     AdvertisingCampaignBaseCost = 2000;
                     AdvertisingCampaignCostPer100Pop = 200;
+                    ParkVisitorLevelupRequirementMultiplier10 = 30;
                     break;
 
                 case 4: // 1001 Nights
@@ -61,6 +67,7 @@
                     ConstructionCostMultiplier = 8;
                     AdvertisingCampaignBaseCost = 4000;
                     AdvertisingCampaignCostPer100Pop = 400;
+                    ParkVisitorLevelupRequirementMultiplier10 = 40;
                     break;
 
                 default:
@@ -71,6 +78,7 @@
                     ConstructionCostMultiplier = 1;
                     AdvertisingCampaignBaseCost = 0;
                     AdvertisingCampaignCostPer100Pop = 0;
+                    ParkVisitorLevelupRequirementMultiplier10 = 10;
                     break;
             }
         }
