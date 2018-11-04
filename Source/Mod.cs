@@ -5,7 +5,8 @@ namespace GameSpeedMod
 {
     public class Mod : IUserMod
     {
-        public static string ModNameEng = "City Growth Speed Mod";
+        public const string ModNameEng = "City Growth Speed Mod";
+        public const string Version = "2018/11/04";
 
         public string Name
         {
@@ -14,7 +15,7 @@ namespace GameSpeedMod
 
         public string Description
         {
-            get { return "Makes milestones progress and city growth slower. Ver 2018/8/23"; }
+            get { return "Makes milestones progress and city growth slower (ver. " + Version + ")"; }
         }
 
         #region Options UI

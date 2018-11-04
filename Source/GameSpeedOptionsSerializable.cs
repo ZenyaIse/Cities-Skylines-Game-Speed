@@ -7,6 +7,7 @@ namespace GameSpeedMod
 {
     public class GameSpeedOptionsSerializable
     {
+        public int Version = 0;
         public int GameSpeedIndex = 0;
         public bool IsMilestonePopulationThreshholdUnscaled = false;
         public bool NoReward = false;
