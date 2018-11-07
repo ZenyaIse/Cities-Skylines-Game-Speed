@@ -10,6 +10,7 @@
         public int AdvertisingCampaignBaseCost;
         public int AdvertisingCampaignCostPer100Pop;
         public int ParkVisitorLevelupRequirementMultiplier10;
+        public int OilOreDepletionRate;
 
         public GameSpeedParameters(int gameSpeedIndex)
         {
@@ -24,6 +25,7 @@
                     AdvertisingCampaignBaseCost = 0;
                     AdvertisingCampaignCostPer100Pop = 0;
                     ParkVisitorLevelupRequirementMultiplier10 = 10;
+                    OilOreDepletionRate = 100;
                     break;
 
                 case 1: // Slow
@@ -35,6 +37,7 @@
                     AdvertisingCampaignBaseCost = 500;
                     AdvertisingCampaignCostPer100Pop = 50;
                     ParkVisitorLevelupRequirementMultiplier10 = 14;
+                    OilOreDepletionRate = 60;
                     break;
 
                 case 2: // Epic
@@ -46,6 +49,7 @@
                     AdvertisingCampaignBaseCost = 1000;
                     AdvertisingCampaignCostPer100Pop = 100;
                     ParkVisitorLevelupRequirementMultiplier10 = 20;
+                    OilOreDepletionRate = 40;
                     break;
 
                 case 3: // Marathon
@@ -57,6 +61,7 @@
                     AdvertisingCampaignBaseCost = 2000;
                     AdvertisingCampaignCostPer100Pop = 200;
                     ParkVisitorLevelupRequirementMultiplier10 = 30;
+                    OilOreDepletionRate = 30;
                     break;
 
                 case 4: // 1001 Nights
@@ -68,6 +73,7 @@
                     AdvertisingCampaignBaseCost = 4000;
                     AdvertisingCampaignCostPer100Pop = 400;
                     ParkVisitorLevelupRequirementMultiplier10 = 40;
+                    OilOreDepletionRate = 20;
                     break;
 
                 default:
@@ -79,6 +85,7 @@
                     AdvertisingCampaignBaseCost = 0;
                     AdvertisingCampaignCostPer100Pop = 0;
                     ParkVisitorLevelupRequirementMultiplier10 = 10;
+                    OilOreDepletionRate = 100;
                     break;
             }
         }
