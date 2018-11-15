@@ -98,9 +98,12 @@ namespace GameSpeedMod
         {
             Loans.ResetLoans();
             LoadingExtension.ResetParkVisitorLevelupRequirement();
+
             Parameters = new GameSpeedParameters(values.GameSpeedIndex);
+
             Loans.SetLoans();
             LoadingExtension.SetParkVisitorLevelupRequirement();
+            LoadingExtension.SetIndustryProductionLevelupRequirement();
             values.Save();
         }
 

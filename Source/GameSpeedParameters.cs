@@ -9,7 +9,7 @@
         public int ConstructionCostMultiplier;
         public int AdvertisingCampaignBaseCost;
         public int AdvertisingCampaignCostPer100Pop;
-        public int ParkVisitorLevelupRequirementMultiplier10;
+        public int ParkLevelupRequirement10;
         public int OilOreDepletionRate;
 
         public GameSpeedParameters(int gameSpeedIndex)
@@ -24,7 +24,7 @@
                     ConstructionCostMultiplier = 1;
                     AdvertisingCampaignBaseCost = 0;
                     AdvertisingCampaignCostPer100Pop = 0;
-                    ParkVisitorLevelupRequirementMultiplier10 = 10;
+                    ParkLevelupRequirement10 = 10;
                     OilOreDepletionRate = 100;
                     break;
 
@@ -36,8 +36,8 @@
                     ConstructionCostMultiplier = 2;
                     AdvertisingCampaignBaseCost = 500;
                     AdvertisingCampaignCostPer100Pop = 50;
-                    ParkVisitorLevelupRequirementMultiplier10 = 14;
-                    OilOreDepletionRate = 60;
+                    ParkLevelupRequirement10 = 15;
+                    OilOreDepletionRate = 65;
                     break;
 
                 case 2: // Epic
@@ -48,8 +48,8 @@
                     ConstructionCostMultiplier = 3;
                     AdvertisingCampaignBaseCost = 1000;
                     AdvertisingCampaignCostPer100Pop = 100;
-                    ParkVisitorLevelupRequirementMultiplier10 = 20;
-                    OilOreDepletionRate = 40;
+                    ParkLevelupRequirement10 = 20;
+                    OilOreDepletionRate = 50;
                     break;
 
                 case 3: // Marathon
@@ -60,8 +60,8 @@
                     ConstructionCostMultiplier = 5;
                     AdvertisingCampaignBaseCost = 2000;
                     AdvertisingCampaignCostPer100Pop = 200;
-                    ParkVisitorLevelupRequirementMultiplier10 = 30;
-                    OilOreDepletionRate = 30;
+                    ParkLevelupRequirement10 = 30;
+                    OilOreDepletionRate = 33;
                     break;
 
                 case 4: // 1001 Nights
@@ -72,8 +72,8 @@
                     ConstructionCostMultiplier = 8;
                     AdvertisingCampaignBaseCost = 4000;
                     AdvertisingCampaignCostPer100Pop = 400;
-                    ParkVisitorLevelupRequirementMultiplier10 = 40;
-                    OilOreDepletionRate = 20;
+                    ParkLevelupRequirement10 = 40;
+                    OilOreDepletionRate = 25;
                     break;
 
                 default:
@@ -84,7 +84,7 @@
                     ConstructionCostMultiplier = 1;
                     AdvertisingCampaignBaseCost = 0;
                     AdvertisingCampaignCostPer100Pop = 0;
-                    ParkVisitorLevelupRequirementMultiplier10 = 10;
+                    ParkLevelupRequirement10 = 10;
                     OilOreDepletionRate = 100;
                     break;
             }
