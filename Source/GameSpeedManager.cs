@@ -68,6 +68,9 @@ namespace GameSpeedMod
 
         public void OnAfterSimulationFrame()
         {
+            // Do not count down when there is no people
+            if (Helper.GetPopulation() == 0) return;
+
             if (demandRestoreFrameCounter > 0)
             {
                 demandRestoreFrameCounter--;
@@ -97,13 +100,14 @@ namespace GameSpeedMod
         public void AfterOptionChanged()
         {
             Loans.ResetLoans();
-            LoadingExtension.ResetParkVisitorLevelupRequirement();
+            Parks.ResetVisitorsLevelupRequirement();
+            Industries.ResetProductionLevelupRequirement();
 
             Parameters = new GameSpeedParameters(values.GameSpeedIndex);
 
             Loans.SetLoans();
-            LoadingExtension.SetParkVisitorLevelupRequirement();
-            LoadingExtension.SetIndustryProductionLevelupRequirement();
+            Parks.SetVisitorsLevelupRequirement();
+            Industries.SetProductionLevelupRequirement();
             values.Save();
         }
 

@@ -180,19 +180,10 @@ namespace GameSpeedMod
             fundCampaignBtn.text = string.Format("Funding an ad campaign\n(Cost {0})", getCostOfAdCampaign().ToString(Settings.moneyFormat, LocaleManager.cultureInfo));
         }
 
-        private int getPopulation()
-        {
-            if (Singleton<DistrictManager>.exists)
-            {
-                return (int)Singleton<DistrictManager>.instance.m_districts.m_buffer[0].m_populationData.m_finalCount;
-            }
-            return 0;
-        }
-
         private int getCostOfAdCampaign()
         {
             GameSpeedParameters p = Singleton<GameSpeedManager>.instance.Parameters;
-            return p.AdvertisingCampaignBaseCost + (getPopulation() / 100) * p.AdvertisingCampaignCostPer100Pop;
+            return p.AdvertisingCampaignBaseCost + (Helper.GetPopulation() / 100) * p.AdvertisingCampaignCostPer100Pop;
         }
     }
 }

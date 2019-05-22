@@ -26,8 +26,8 @@ namespace GameSpeedMod
             if (mode == LoadMode.NewGame || mode == LoadMode.LoadGame || mode == LoadMode.NewGameFromScenario)
             {
                 Loans.SetLoans();
-                SetParkVisitorLevelupRequirement();
-                SetIndustryProductionLevelupRequirement();
+                Parks.SetVisitorsLevelupRequirement();
+                Industries.SetProductionLevelupRequirement();
 
                 createAdvertisingCampaignPanel();
 
@@ -45,8 +45,8 @@ namespace GameSpeedMod
         public override void OnLevelUnloading()
         {
             Loans.ResetLoans();
-            ResetParkVisitorLevelupRequirement();
-            ResetIndustryProductionLevelupRequirement();
+            Parks.ResetVisitorsLevelupRequirement();
+            Industries.ResetProductionLevelupRequirement();
         }
 
         private void createAdvertisingCampaignPanel()
@@ -95,60 +95,6 @@ namespace GameSpeedMod
                 {
                     adPanel.isVisible = !adPanel.isVisible;
                 }
-            }
-        }
-
-
-        public static void SetParkVisitorLevelupRequirement()
-        {
-            GameSpeedManager gsm = Singleton<GameSpeedManager>.instance;
-            DistrictManager dm = Singleton<DistrictManager>.instance;
-            //System.Text.StringBuilder sb = new System.Text.StringBuilder("m_parkProperties: ");
-            for (int i = 0; i < dm.m_properties.m_parkProperties.m_parkLevelInfo.Length; i++)
-            {
-                //sb.Append(dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement.ToString() + ",");
-                dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement =
-                    dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement * gsm.Parameters.LevelupRequirement / 100;
-            }
-            //Original values: 0,0,0,0,0,0,0,500,2500,5000,10000,0,0,500,2500,5000,10000,0,0,500,2500,5000,10000,0,0,500,2500,5000,10000,0
-            //Debug.Log(sb.ToString());
-        }
-
-        public static void ResetParkVisitorLevelupRequirement()
-        {
-            GameSpeedManager gsm = Singleton<GameSpeedManager>.instance;
-            DistrictManager dm = Singleton<DistrictManager>.instance;
-            for (int i = 0; i < dm.m_properties.m_parkProperties.m_parkLevelInfo.Length; i++)
-            {
-                dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement =
-                    dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement * 100 / gsm.Parameters.LevelupRequirement;
-            }
-        }
-
-
-        public static void SetIndustryProductionLevelupRequirement()
-        {
-            GameSpeedManager gsm = Singleton<GameSpeedManager>.instance;
-            DistrictManager dm = Singleton<DistrictManager>.instance;
-            //System.Text.StringBuilder sb = new System.Text.StringBuilder("m_productionLevelupRequirement: ");
-            for (int i = 0; i < dm.m_properties.m_parkProperties.m_industryLevelInfo.Length; i++)
-            {
-                //sb.Append(dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement.ToString() + ",");
-                dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement =
-                    dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement * gsm.Parameters.LevelupRequirement / 100;
-            }
-            //Original values: 0,500000,1500000,4500000,13500000,0
-            //Debug.Log(sb.ToString());
-        }
-
-        public static void ResetIndustryProductionLevelupRequirement()
-        {
-            GameSpeedManager gsm = Singleton<GameSpeedManager>.instance;
-            DistrictManager dm = Singleton<DistrictManager>.instance;
-            for (int i = 0; i < dm.m_properties.m_parkProperties.m_industryLevelInfo.Length; i++)
-            {
-                dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement =
-                    dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement * 100 / gsm.Parameters.LevelupRequirement;
             }
         }
     }

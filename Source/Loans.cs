@@ -4,13 +4,18 @@ namespace GameSpeedMod
 {
     public static class Loans
     {
-        private static int[] m_amount_orig = new int[3];
-        private static int[] m_length_orig = new int[3];
+        private static int[] m_amount_orig = null;
+        private static int[] m_length_orig = null;
 
         public static void SetLoans()
         {
             EconomyManager em = Singleton<EconomyManager>.instance;
             GameSpeedManager gs = Singleton<GameSpeedManager>.instance;
+
+            if (em.m_properties == null || em.m_properties.m_banks == null) return;
+
+            m_amount_orig = new int[3];
+            m_length_orig = new int[3];
 
             for (int i = 0; i < 3; i++)
             {
@@ -33,6 +38,8 @@ namespace GameSpeedMod
 
         public static void ResetLoans()
         {
+            if (m_amount_orig == null || m_length_orig == null) return;
+
             EconomyManager em = Singleton<EconomyManager>.instance;
 
             for (int i = 0; i < 3; i++)
