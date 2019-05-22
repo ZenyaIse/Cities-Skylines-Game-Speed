@@ -108,7 +108,7 @@ namespace GameSpeedMod
             {
                 //sb.Append(dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement.ToString() + ",");
                 dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement =
-                    dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement * gsm.Parameters.ParkLevelupRequirement10 / 10;
+                    dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement * gsm.Parameters.LevelupRequirement / 100;
             }
             //Original values: 0,0,0,0,0,0,0,500,2500,5000,10000,0,0,500,2500,5000,10000,0,0,500,2500,5000,10000,0,0,500,2500,5000,10000,0
             //Debug.Log(sb.ToString());
@@ -121,7 +121,7 @@ namespace GameSpeedMod
             for (int i = 0; i < dm.m_properties.m_parkProperties.m_parkLevelInfo.Length; i++)
             {
                 dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement =
-                    dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement * 10 / gsm.Parameters.ParkLevelupRequirement10;
+                    dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement * 100 / gsm.Parameters.LevelupRequirement;
             }
         }
 
@@ -135,7 +135,7 @@ namespace GameSpeedMod
             {
                 //sb.Append(dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement.ToString() + ",");
                 dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement =
-                    dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement * gsm.Parameters.ParkLevelupRequirement10 / 10;
+                    dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement * gsm.Parameters.LevelupRequirement / 100;
             }
             //Original values: 0,500000,1500000,4500000,13500000,0
             //Debug.Log(sb.ToString());
@@ -148,7 +148,7 @@ namespace GameSpeedMod
             for (int i = 0; i < dm.m_properties.m_parkProperties.m_industryLevelInfo.Length; i++)
             {
                 dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement =
-                    dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement * 10 / gsm.Parameters.ParkLevelupRequirement10;
+                    dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement * 100 / gsm.Parameters.LevelupRequirement;
             }
         }
     }

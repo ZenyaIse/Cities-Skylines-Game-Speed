@@ -9,7 +9,7 @@
         public int ConstructionCostMultiplier;
         public int AdvertisingCampaignBaseCost;
         public int AdvertisingCampaignCostPer100Pop;
-        public int ParkLevelupRequirement10;
+        public int LevelupRequirement;
         public int OilOreDepletionRate;
 
         public GameSpeedParameters(int gameSpeedIndex)
@@ -24,7 +24,7 @@
                     ConstructionCostMultiplier = 1;
                     AdvertisingCampaignBaseCost = 0;
                     AdvertisingCampaignCostPer100Pop = 0;
-                    ParkLevelupRequirement10 = 10;
+                    LevelupRequirement = 100;
                     OilOreDepletionRate = 100;
                     break;
 
@@ -36,7 +36,7 @@
                     ConstructionCostMultiplier = 2;
                     AdvertisingCampaignBaseCost = 500;
                     AdvertisingCampaignCostPer100Pop = 50;
-                    ParkLevelupRequirement10 = 15;
+                    LevelupRequirement = 150;
                     OilOreDepletionRate = 65;
                     break;
 
@@ -48,7 +48,7 @@
                     ConstructionCostMultiplier = 3;
                     AdvertisingCampaignBaseCost = 1000;
                     AdvertisingCampaignCostPer100Pop = 100;
-                    ParkLevelupRequirement10 = 20;
+                    LevelupRequirement = 200;
                     OilOreDepletionRate = 50;
                     break;
 
@@ -60,7 +60,7 @@
                     ConstructionCostMultiplier = 5;
                     AdvertisingCampaignBaseCost = 2000;
                     AdvertisingCampaignCostPer100Pop = 200;
-                    ParkLevelupRequirement10 = 30;
+                    LevelupRequirement = 300;
                     OilOreDepletionRate = 33;
                     break;
 
@@ -72,7 +72,7 @@
                     ConstructionCostMultiplier = 8;
                     AdvertisingCampaignBaseCost = 4000;
                     AdvertisingCampaignCostPer100Pop = 400;
-                    ParkLevelupRequirement10 = 40;
+                    LevelupRequirement = 400;
                     OilOreDepletionRate = 25;
                     break;
 
@@ -84,7 +84,7 @@
                     ConstructionCostMultiplier = 1;
                     AdvertisingCampaignBaseCost = 0;
                     AdvertisingCampaignCostPer100Pop = 0;
-                    ParkLevelupRequirement10 = 10;
+                    LevelupRequirement = 100;
                     OilOreDepletionRate = 100;
                     break;
             }
