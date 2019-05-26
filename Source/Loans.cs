@@ -25,6 +25,12 @@ namespace GameSpeedMod
                 int newAmount = li.m_amount * gs.Parameters.LoanMultiplier;
                 int newLength = li.m_length * (1 + gs.Parameters.LoanMultiplier) / 2; // Halve the effect to prevent too long loan length.
 
+                if (i >= 1)
+                {
+                    // Decrease the length of payment for 2nd and 3rd banks (game balance)
+                    newLength /= 2;
+                }
+
                 m_amount_orig[i] = li.m_amount;
                 li.m_amount = newAmount;
 
