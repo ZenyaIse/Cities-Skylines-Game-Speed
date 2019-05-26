@@ -20,7 +20,7 @@ namespace GameSpeedMod
                 int moneyToAdd = 40 * (gsm.Parameters.ConstructionCostMultiplier - 1) * 100000;
                 em.AddResource(EconomyManager.Resource.LoanAmount, moneyToAdd, ItemClass.Service.None, ItemClass.SubService.None, ItemClass.Level.None);
 
-                gsm.StartAdvertisingCampaign();
+                //gsm.StartAdvertisingCampaign();
             }
 
             if (mode == LoadMode.NewGame || mode == LoadMode.LoadGame || mode == LoadMode.NewGameFromScenario)
@@ -31,19 +31,22 @@ namespace GameSpeedMod
 
                 createAdvertisingCampaignPanel();
 
-                Singleton<UnlockManager>.instance.EventMilestoneUnlocked += delegate (MilestoneInfo info)
-                {
-                    if (Regex.IsMatch(info.m_name, @"^Milestone\d+$"))
-                    {
-                        Debug.Log("GameSpeedMod >>> Started advertising campaign because " + info.m_name + " unlocked: ");
-                        gsm.StartAdvertisingCampaign();
-                    }
-                };
+                Singleton<UnlockManager>.instance.EventMilestoneUnlocked += onMilestoneUnlocked;
+            }
+        }
+
+        private void onMilestoneUnlocked(MilestoneInfo info)
+        {
+            if (Regex.IsMatch(info.m_name, @"^Milestone\d+$"))
+            {
+                Singleton<GameSpeedManager>.instance.StartAdvertisingCampaign(info.m_name + " is unlocked.");
             }
         }
 
         public override void OnLevelUnloading()
         {
+            Singleton<UnlockManager>.instance.EventMilestoneUnlocked -= onMilestoneUnlocked;
+
             Loans.ResetLoans();
             Parks.ResetVisitorsLevelupRequirement();
             Industries.ResetProductionLevelupRequirement();

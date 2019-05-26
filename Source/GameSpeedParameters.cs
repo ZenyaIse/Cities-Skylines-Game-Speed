@@ -29,7 +29,7 @@
                     break;
 
                 case 1: // Slow
-                    AreaCostMultiplier = 3;
+                    AreaCostMultiplier = 2;
                     MilestonePopulationThreshholdMultiplier = 1.25f;
                     DemandMaxValue = 70;
                     LoanMultiplier = 2;
@@ -41,7 +41,7 @@
                     break;
 
                 case 2: // Epic
-                    AreaCostMultiplier = 5;
+                    AreaCostMultiplier = 3;
                     MilestonePopulationThreshholdMultiplier = 1.5f;
                     DemandMaxValue = 50;
                     LoanMultiplier = 3;
@@ -53,7 +53,7 @@
                     break;
 
                 case 3: // Marathon
-                    AreaCostMultiplier = 10;
+                    AreaCostMultiplier = 5;
                     MilestonePopulationThreshholdMultiplier = 1.75f;
                     DemandMaxValue = 40;
                     LoanMultiplier = 4;
@@ -65,7 +65,7 @@
                     break;
 
                 case 4: // 1001 Nights
-                    AreaCostMultiplier = 20;
+                    AreaCostMultiplier = 8;
                     MilestonePopulationThreshholdMultiplier = 2.0f;
                     DemandMaxValue = 30;
                     LoanMultiplier = 5;

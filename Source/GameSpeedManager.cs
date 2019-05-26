@@ -61,8 +61,9 @@ namespace GameSpeedMod
             return demandRestorePercent;
         }
 
-        public void StartAdvertisingCampaign()
+        public void StartAdvertisingCampaign(string reason)
         {
+            Debug.Log("Started advertising campaign: because " + reason);
             demandRestoreFrameCounter += framesPerDay * 28; // Four weeks campaign
         }
 
@@ -115,7 +116,7 @@ namespace GameSpeedMod
         {
             if (BuiltMonuments.Add(name))
             {
-                StartAdvertisingCampaign();
+                StartAdvertisingCampaign(name + " monument was built.");
             }
         }
     }

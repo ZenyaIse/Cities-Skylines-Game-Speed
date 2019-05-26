@@ -77,7 +77,7 @@ namespace GameSpeedMod
             int moneyToTake = getCostOfAdCampaign() * 100;
             if (em.LastCashAmount >= moneyToTake)
             {
-                Singleton<GameSpeedManager>.instance.StartAdvertisingCampaign();
+                Singleton<GameSpeedManager>.instance.StartAdvertisingCampaign("of player invest.");
 
                 em.AddResource(EconomyManager.Resource.LoanAmount, -moneyToTake, ItemClass.Service.None, ItemClass.SubService.None, ItemClass.Level.None);
 
