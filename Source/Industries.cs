@@ -20,7 +20,7 @@ namespace GameSpeedMod
             {
                 //sb.Append(dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement.ToString() + ",");
                 industryLevelInfo_orig[i] = dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement;
-                dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement = industryLevelInfo_orig[i] * gsm.Parameters.LevelupRequirement / 100;
+                dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement = industryLevelInfo_orig[i] / 100 * gsm.Parameters.LevelupRequirement;
             }
             //Original values: 0,500000,1500000,4500000,13500000,0
             //Debug.Log(sb.ToString());
