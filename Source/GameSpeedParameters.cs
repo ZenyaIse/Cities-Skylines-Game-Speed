@@ -35,7 +35,7 @@
                     LoanMultiplier = 2;
                     ConstructionCostMultiplier = 2;
                     AdvertisingCampaignBaseCost = 500;
-                    AdvertisingCampaignCostPer100Pop = 50;
+                    AdvertisingCampaignCostPer100Pop = 100;
                     LevelupRequirement = 150;
                     OilOreDepletionRate = 65;
                     break;
@@ -47,7 +47,7 @@
                     LoanMultiplier = 3;
                     ConstructionCostMultiplier = 3;
                     AdvertisingCampaignBaseCost = 1000;
-                    AdvertisingCampaignCostPer100Pop = 100;
+                    AdvertisingCampaignCostPer100Pop = 200;
                     LevelupRequirement = 200;
                     OilOreDepletionRate = 50;
                     break;
@@ -59,7 +59,7 @@
                     LoanMultiplier = 4;
                     ConstructionCostMultiplier = 5;
                     AdvertisingCampaignBaseCost = 2000;
-                    AdvertisingCampaignCostPer100Pop = 200;
+                    AdvertisingCampaignCostPer100Pop = 400;
                     LevelupRequirement = 300;
                     OilOreDepletionRate = 33;
                     break;
@@ -71,7 +71,7 @@
                     LoanMultiplier = 5;
                     ConstructionCostMultiplier = 8;
                     AdvertisingCampaignBaseCost = 4000;
-                    AdvertisingCampaignCostPer100Pop = 400;
+                    AdvertisingCampaignCostPer100Pop = 800;
                     LevelupRequirement = 400;
                     OilOreDepletionRate = 25;
                     break;
