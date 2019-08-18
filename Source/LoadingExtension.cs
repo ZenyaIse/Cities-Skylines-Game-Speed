@@ -92,6 +92,12 @@ namespace GameSpeedMod
 
         private void UIInput_eventProcessKeyEvent(EventType eventType, KeyCode keyCode, EventModifiers modifiers)
         {
+            if (eventType == EventType.KeyDown && keyCode == KeyCode.Escape)
+            {
+                adPanel.isVisible = false;
+                return;
+            }
+
             if (eventType == EventType.KeyDown && modifiers == EventModifiers.Control && keyCode == KeyCode.D)
             {
                 if (adPanel != null)
