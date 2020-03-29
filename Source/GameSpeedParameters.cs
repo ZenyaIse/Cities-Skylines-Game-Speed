@@ -11,6 +11,7 @@
         public int AdvertisingCampaignCostPer100Pop;
         public int LevelupRequirement;
         public int OilOreDepletionRate;
+        public int ConstructionTimeMultiplier;
 
         public GameSpeedParameters(int gameSpeedIndex)
         {
@@ -26,6 +27,7 @@
                     AdvertisingCampaignCostPer100Pop = 0;
                     LevelupRequirement = 100;
                     OilOreDepletionRate = 100;
+                    ConstructionTimeMultiplier = 1;
                     break;
 
                 case 1: // Slow
@@ -38,6 +40,7 @@
                     AdvertisingCampaignCostPer100Pop = 100;
                     LevelupRequirement = 150;
                     OilOreDepletionRate = 65;
+                    ConstructionTimeMultiplier = 2;
                     break;
 
                 case 2: // Epic
@@ -50,6 +53,7 @@
                     AdvertisingCampaignCostPer100Pop = 200;
                     LevelupRequirement = 200;
                     OilOreDepletionRate = 50;
+                    ConstructionTimeMultiplier = 3;
                     break;
 
                 case 3: // Marathon
@@ -62,6 +66,7 @@
                     AdvertisingCampaignCostPer100Pop = 400;
                     LevelupRequirement = 300;
                     OilOreDepletionRate = 33;
+                    ConstructionTimeMultiplier = 5;
                     break;
 
                 case 4: // 1001 Nights
@@ -74,6 +79,7 @@
                     AdvertisingCampaignCostPer100Pop = 800;
                     LevelupRequirement = 400;
                     OilOreDepletionRate = 25;
+                    ConstructionTimeMultiplier = 10;
                     break;
 
                 default:
@@ -86,6 +92,7 @@
                     AdvertisingCampaignCostPer100Pop = 0;
                     LevelupRequirement = 100;
                     OilOreDepletionRate = 100;
+                    ConstructionTimeMultiplier = 1;
                     break;
             }
         }

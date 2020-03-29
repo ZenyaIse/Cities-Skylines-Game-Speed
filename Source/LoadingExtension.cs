@@ -28,6 +28,7 @@ namespace GameSpeedMod
                 Loans.SetLoans();
                 Parks.SetVisitorsLevelupRequirement();
                 Industries.SetProductionLevelupRequirement();
+                Prefabs.SetBldPrefabs();
 
                 createAdvertisingCampaignPanel();
 

@@ -69,6 +69,7 @@
     <Compile Include="Mod.cs" />
     <Compile Include="OilAndOreResource.cs" />
     <Compile Include="Parks.cs" />
+    <Compile Include="Prefabs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializableDataExtension.cs" />
     <Compile Include="Threading.cs" />
