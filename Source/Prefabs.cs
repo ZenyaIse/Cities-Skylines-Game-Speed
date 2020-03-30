@@ -10,7 +10,6 @@ namespace GameSpeedMod
         public static void SetBldPrefabs()
         {
             int m = Singleton<GameSpeedManager>.instance.Parameters.ConstructionTimeMultiplier;
-            if (m == 1) return;
 
             int prebabsCount = PrefabCollection<BuildingInfo>.PrefabCount();
             for (uint i = 0; i < prebabsCount; i++)

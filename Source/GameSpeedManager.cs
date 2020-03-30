@@ -110,6 +110,7 @@ namespace GameSpeedMod
             Parks.SetVisitorsLevelupRequirement();
             Industries.SetProductionLevelupRequirement();
             Prefabs.SetBldPrefabs();
+            TimeFlow.SetTimeFlow();
             values.Save();
         }
 

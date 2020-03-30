@@ -12,6 +12,7 @@
         public int LevelupRequirement;
         public int OilOreDepletionRate;
         public int ConstructionTimeMultiplier;
+        public int TimeFlowMultiplier_x10;
 
         public GameSpeedParameters(int gameSpeedIndex)
         {
@@ -28,6 +29,7 @@
                     LevelupRequirement = 100;
                     OilOreDepletionRate = 100;
                     ConstructionTimeMultiplier = 1;
+                    TimeFlowMultiplier_x10 = 10;
                     break;
 
                 case 1: // Slow
@@ -41,6 +43,7 @@
                     LevelupRequirement = 150;
                     OilOreDepletionRate = 65;
                     ConstructionTimeMultiplier = 2;
+                    TimeFlowMultiplier_x10 = 15;
                     break;
 
                 case 2: // Epic
@@ -54,6 +57,7 @@
                     LevelupRequirement = 200;
                     OilOreDepletionRate = 50;
                     ConstructionTimeMultiplier = 3;
+                    TimeFlowMultiplier_x10 = 20;
                     break;
 
                 case 3: // Marathon
@@ -67,6 +71,7 @@
                     LevelupRequirement = 300;
                     OilOreDepletionRate = 33;
                     ConstructionTimeMultiplier = 5;
+                    TimeFlowMultiplier_x10 = 30;
                     break;
 
                 case 4: // 1001 Nights
@@ -80,6 +85,7 @@
                     LevelupRequirement = 400;
                     OilOreDepletionRate = 25;
                     ConstructionTimeMultiplier = 10;
+                    TimeFlowMultiplier_x10 = 40;
                     break;
 
                 default:
@@ -93,6 +99,7 @@
                     LevelupRequirement = 100;
                     OilOreDepletionRate = 100;
                     ConstructionTimeMultiplier = 1;
+                    TimeFlowMultiplier_x10 = 10;
                     break;
             }
         }

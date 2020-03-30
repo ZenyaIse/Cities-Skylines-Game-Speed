@@ -3,6 +3,7 @@ using ColossalFramework;
 using ColossalFramework.UI;
 using UnityEngine;
 using System.Text.RegularExpressions;
+using System;
 
 namespace GameSpeedMod
 {
@@ -15,24 +16,27 @@ namespace GameSpeedMod
             EconomyManager em = Singleton<EconomyManager>.instance;
             GameSpeedManager gsm = Singleton<GameSpeedManager>.instance;
 
-            if (mode == LoadMode.NewGame || mode == LoadMode.NewGameFromScenario)
-            {
-                int moneyToAdd = 40 * (gsm.Parameters.ConstructionCostMultiplier - 1) * 100000;
-                em.AddResource(EconomyManager.Resource.LoanAmount, moneyToAdd, ItemClass.Service.None, ItemClass.SubService.None, ItemClass.Level.None);
-
-                //gsm.StartAdvertisingCampaign();
-            }
-
             if (mode == LoadMode.NewGame || mode == LoadMode.LoadGame || mode == LoadMode.NewGameFromScenario)
             {
                 Loans.SetLoans();
                 Parks.SetVisitorsLevelupRequirement();
                 Industries.SetProductionLevelupRequirement();
                 Prefabs.SetBldPrefabs();
+                TimeFlow.SetTimeFlow();
 
                 createAdvertisingCampaignPanel();
 
                 Singleton<UnlockManager>.instance.EventMilestoneUnlocked += onMilestoneUnlocked;
+            }
+
+            if (mode == LoadMode.NewGame || mode == LoadMode.NewGameFromScenario)
+            {
+                int moneyToAdd = 40 * (gsm.Parameters.ConstructionCostMultiplier - 1) * 100000;
+                em.AddResource(EconomyManager.Resource.LoanAmount, moneyToAdd, ItemClass.Service.None, ItemClass.SubService.None, ItemClass.Level.None);
+
+                //gsm.StartAdvertisingCampaign();
+
+                TimeFlow.SetGameDateTime(DateTime.Now);
             }
         }
 
