@@ -17,7 +17,7 @@ namespace GameSpeedMod
                 s.WriteBool(m.values.NoReward);
                 s.WriteBool(m.values.IsHardMode);
 
-                s.WriteInt32(m.demandRestoreFrameCounter);
+                s.WriteFloat(m.advertisingCampaignDaysLeft);
                 string[] builtMonumentsArray = new string[m.BuiltMonuments.Count];
                 m.BuiltMonuments.CopyTo(builtMonumentsArray);
                 s.WriteUniqueStringArray(builtMonumentsArray);
@@ -31,7 +31,7 @@ namespace GameSpeedMod
                 m.values.NoReward = s.ReadBool();
                 m.values.IsHardMode = s.ReadBool();
 
-                m.demandRestoreFrameCounter = s.ReadInt32();
+                m.advertisingCampaignDaysLeft = s.ReadFloat();
                 string[] builtMonumentsArray = s.ReadUniqueStringArray();
                 m.BuiltMonuments = new HashSet<string>(builtMonumentsArray);
             }
@@ -42,29 +42,41 @@ namespace GameSpeedMod
             }
         }
 
-        protected const int framesPerDay = 585; // See m_timePerFrame from SimulationManager.Awake()
+        //protected const int framesPerDay = 585; // See m_timePerFrame from SimulationManager.Awake()
 
         public string[] GameSpeeds = new string[] { "Normal", "Slow", "Epic", "Marathon", "1001 Nights" };
 
         public GameSpeedOptionsSerializable values = new GameSpeedOptionsSerializable();
         public GameSpeedParameters Parameters;
 
-        private int demandRestoreFrameCounter = 0;
+        public int StartAdvertisingCampaignDays = 7;
+        private float advertisingCampaignDaysLeft = 0;
         public HashSet<string> BuiltMonuments = new HashSet<string>();
 
         public int GetDemandRestorePercent()
         {
-            int demandRestorePercent = demandRestoreFrameCounter * 100 / (framesPerDay * 14);
+            if (advertisingCampaignDaysLeft <= 0)
+            {
+                return 0;
+            }
 
-            if (demandRestorePercent > 100) return 100;
+            if (advertisingCampaignDaysLeft > 3)
+            {
+                return 100;
+            }
 
-            return demandRestorePercent;
+            return (int)(advertisingCampaignDaysLeft * 100 / 3);
         }
 
         public void StartAdvertisingCampaign(string reason)
         {
+            if (advertisingCampaignDaysLeft < 0)
+            {
+                advertisingCampaignDaysLeft = 0;
+            }
+
             Debug.Log("Started advertising campaign: because " + reason);
-            demandRestoreFrameCounter += framesPerDay * 28; // Four weeks campaign
+            advertisingCampaignDaysLeft += StartAdvertisingCampaignDays;
         }
 
         public void OnAfterSimulationFrame()
@@ -72,9 +84,9 @@ namespace GameSpeedMod
             // Do not count down when there is no people
             if (Helper.GetPopulation() == 0) return;
 
-            if (demandRestoreFrameCounter > 0)
+            if (advertisingCampaignDaysLeft > 0)
             {
-                demandRestoreFrameCounter--;
+                advertisingCampaignDaysLeft -= (float)SimulationManager.instance.m_timePerFrame.TotalDays;
             }
         }
 
@@ -82,7 +94,7 @@ namespace GameSpeedMod
         {
             get
             {
-                return demandRestoreFrameCounter / framesPerDay;
+                return (int)advertisingCampaignDaysLeft;
             }
         }
 
@@ -120,6 +132,11 @@ namespace GameSpeedMod
             {
                 StartAdvertisingCampaign(name + " monument was built.");
             }
+        }
+
+        private int getFramesPerDay()
+        {
+            return (int)(SimulationManager.instance.m_timePerFrame.Ticks / 10000000);
         }
     }
 }

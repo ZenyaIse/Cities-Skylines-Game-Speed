@@ -6,7 +6,7 @@ namespace GameSpeedMod
     public class Mod : IUserMod
     {
         public const string ModNameEng = "City Growth Speed Mod";
-        public const string Version = "2020/4/2";
+        public const string Version = "2020/4/3";
 
         public string Name
         {

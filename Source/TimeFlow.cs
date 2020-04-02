@@ -1,6 +1,5 @@
 ﻿using System;
 using ColossalFramework;
-using UnityEngine;
 
 namespace GameSpeedMod
 {
