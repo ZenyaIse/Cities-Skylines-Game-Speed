@@ -35,8 +35,6 @@ namespace GameSpeedMod
                 em.AddResource(EconomyManager.Resource.LoanAmount, moneyToAdd, ItemClass.Service.None, ItemClass.SubService.None, ItemClass.Level.None);
 
                 //gsm.StartAdvertisingCampaign();
-
-                TimeFlow.SetGameDateTime(DateTime.Now);
             }
         }
 
