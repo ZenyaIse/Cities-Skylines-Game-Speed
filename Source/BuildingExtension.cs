@@ -12,13 +12,24 @@ namespace GameSpeedMod
 
             if (Singleton<BuildingManager>.exists)
             {
-                BuildingManager bm = Singleton<BuildingManager>.instance;
+                ZoneManager zm = Singleton<ZoneManager>.instance;
+                ItemClass.Service service = Singleton<BuildingManager>.instance.m_buildings.m_buffer[id].Info.GetService();
+                int drop = Singleton<GameSpeedManager>.instance.Parameters.DemandDropAfterBuildingCreated;
 
-                Building bld = bm.m_buildings.m_buffer[id];
-
-                if (bld.Info.m_buildingAI.GetType() == typeof(MonumentAI))
+                switch (service)
                 {
-                    Singleton<GameSpeedManager>.instance.OnMonumentBuilt(bld.Info.name);
+                    case ItemClass.Service.Residential:
+                        zm.m_actualResidentialDemand = Mathf.Max(0, zm.m_actualResidentialDemand - drop);
+                        break;
+                    case ItemClass.Service.Commercial:
+                        zm.m_actualCommercialDemand = Mathf.Max(0, zm.m_actualCommercialDemand - drop);
+                        break;
+                    case ItemClass.Service.Industrial:
+                        zm.m_actualWorkplaceDemand = Mathf.Max(0, zm.m_actualWorkplaceDemand - drop);
+                        break;
+                    case ItemClass.Service.Office:
+                        zm.m_actualWorkplaceDemand = Mathf.Max(0, zm.m_actualWorkplaceDemand - drop);
+                        break;
                 }
             }
         }

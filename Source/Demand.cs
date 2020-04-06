@@ -30,31 +30,30 @@ namespace GameSpeedMod
                 demandValue -= 20;
             }
 
-            int demandMaxValue = gs.Parameters.DemandMaxValue;
-            int demandRestorePercent = gs.GetDemandRestorePercent();
-
-            demandMaxValue += (100 - demandMaxValue) * demandRestorePercent / 100;
-
-            demandValue = (demandValue * demandMaxValue + 99) / 100;
-
             return demandValue;
         }
 
-        public static int GetModdedDemand_Inverse(int demandValue)
+        public override int OnUpdateDemand(int lastDemand, int nextDemand, int targetDemand)
         {
-            GameSpeedManager gs = Singleton<GameSpeedManager>.instance;
-
-            float k = gs.Parameters.DemandMaxValue * 0.01f;
-            float r = gs.GetDemandRestorePercent() * 0.01f;
-
-            demandValue = (int)(demandValue / (k + (1 - k) * r));
-
-            if (gs.values.IsHardMode)
+            if (Singleton<GameSpeedManager>.instance.values.GameSpeedIndex == 0) // Normal
             {
-                demandValue += 20;
+                return nextDemand;
             }
 
-            return demandValue;
+            if (targetDemand > lastDemand)
+            {
+                nextDemand = Mathf.Min(lastDemand + 1, targetDemand);
+            }
+            else if (targetDemand < lastDemand)
+            {
+                nextDemand = Mathf.Max(lastDemand - 1, targetDemand);
+            }
+            else
+            {
+                nextDemand = targetDemand;
+            }
+
+            return nextDemand;
         }
     }
 }

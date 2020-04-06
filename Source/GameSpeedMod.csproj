@@ -52,7 +52,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdvertisingCampaignPanel.cs" />
     <Compile Include="Areas.cs" />
     <Compile Include="BuildingExtension.cs" />
     <Compile Include="Demand.cs" />
@@ -72,7 +71,6 @@
     <Compile Include="Prefabs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializableDataExtension.cs" />
-    <Compile Include="Threading.cs" />
     <Compile Include="TimeFlow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
