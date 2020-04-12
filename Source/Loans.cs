@@ -19,26 +19,19 @@ namespace GameSpeedMod
 
             for (int i = 0; i < 3; i++)
             {
-                EconomyManager.Bank bank = em.m_properties.m_banks[i];
-                EconomyManager.LoanInfo li = bank.m_loanOffers[0];
+                int oldAmount = em.m_properties.m_banks[i].m_loanOffers[0].m_amount;
+                int oldLength = em.m_properties.m_banks[i].m_loanOffers[0].m_length;
 
-                int newAmount = li.m_amount * gs.Parameters.LoanMultiplier;
-                int newLength = li.m_length * (1 + gs.Parameters.LoanMultiplier) / 2; // Halve the effect to prevent too long loan length.
+                int newAmount = oldAmount * gs.Parameters.LoanMultiplier;
+                int newLength = oldLength * (1 + gs.Parameters.LoanMultiplier) / 2; // Halve the effect to prevent too long loan length.
 
-                if (i >= 1)
-                {
-                    // Decrease the length of payment for 2nd and 3rd banks (game balance)
-                    newLength /= 2;
-                }
+                m_amount_orig[i] = oldAmount;
+                m_length_orig[i] = oldLength;
 
-                m_amount_orig[i] = li.m_amount;
-                li.m_amount = newAmount;
+                em.m_properties.m_banks[i].m_loanOffers[0].m_amount = newAmount;
+                em.m_properties.m_banks[i].m_loanOffers[0].m_length = newLength;
 
-                m_length_orig[i] = li.m_length;
-                li.m_length = newLength;
-
-                bank.m_loanOffers[0] = li;
-                em.m_properties.m_banks[i] = bank;
+                Logger.Add(em.m_properties.m_banks[i].m_bankName, "amount", oldAmount, newAmount, "length", oldLength, newLength);
             }
         }
 
@@ -50,16 +43,14 @@ namespace GameSpeedMod
 
             for (int i = 0; i < 3; i++)
             {
-                EconomyManager.Bank bank = em.m_properties.m_banks[i];
-                EconomyManager.LoanInfo li = bank.m_loanOffers[0];
-
-                li.m_amount = m_amount_orig[i];
-
-                li.m_length = m_length_orig[i];
-
-                bank.m_loanOffers[0] = li;
-                em.m_properties.m_banks[i] = bank;
+                em.m_properties.m_banks[i].m_loanOffers[0].m_amount = m_amount_orig[i];
+                em.m_properties.m_banks[i].m_loanOffers[0].m_length = m_length_orig[i];
             }
+
+            m_amount_orig = null;
+            m_length_orig = null;
+
+            Logger.Add("Reset loans");
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using ColossalFramework;
+﻿using ColossalFramework;
 
 namespace GameSpeedMod
 {
@@ -10,6 +9,23 @@ namespace GameSpeedMod
         public static void SetBldPrefabs()
         {
             int m = Singleton<GameSpeedManager>.instance.Parameters.ConstructionTimeMultiplier;
+            if (setBldPrefabs(m))
+            {
+                Logger.Add("All private buildings", "construction time", constructionTimeVanilla, constructionTimeVanilla * m);
+            }
+        }
+
+        public static void ResetBldPrefabs()
+        {
+            if (setBldPrefabs(1))
+            {
+                Logger.Add("Reset all private buildings construction time", constructionTimeVanilla);
+            }
+        }
+
+        private static bool setBldPrefabs(int constructionTimeMultiplier)
+        {
+            int count = 0;
 
             int prebabsCount = PrefabCollection<BuildingInfo>.PrefabCount();
             for (uint i = 0; i < prebabsCount; i++)
@@ -20,10 +36,11 @@ namespace GameSpeedMod
                 PrivateBuildingAI ai = bi.m_buildingAI as PrivateBuildingAI;
                 if (ai == null) continue;
 
-                ai.m_constructionTime = constructionTimeVanilla * m;
+                ai.m_constructionTime = constructionTimeVanilla * constructionTimeMultiplier;
+                count++;
             }
 
-            Debug.Log("GameSpeedMod: increased construction time for all private buildings in " + m.ToString() + " times");
+            return count > 0;
         }
     }
 }

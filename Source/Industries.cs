@@ -19,10 +19,15 @@ namespace GameSpeedMod
             for (int i = 0; i < infosCount; i++)
             {
                 //sb.Append(dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement.ToString() + ",");
-                industryLevelInfo_orig[i] = dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement;
-                dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement = industryLevelInfo_orig[i] / 100 * gsm.Parameters.LevelupRequirement;
+                //Original values: 0,500000,1500000,4500000,13500000,0
+                int oldValue = dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement;
+                int newValue = oldValue / 100 * gsm.Parameters.LevelupRequirement;
+
+                industryLevelInfo_orig[i] = oldValue;
+                dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement = newValue;
+
+                Logger.Add(dm.m_properties.m_parkProperties.name, "productionLevelupRequirement" + i.ToString(), oldValue / 1000, newValue / 1000);
             }
-            //Original values: 0,500000,1500000,4500000,13500000,0
             //Debug.Log(sb.ToString());
         }
 
@@ -37,6 +42,8 @@ namespace GameSpeedMod
             }
 
             industryLevelInfo_orig = null;
+
+            Logger.Add("Reset productionLevelupRequirement");
         }
     }
 }

@@ -50,18 +50,32 @@ namespace GameSpeedMod
 
         public void AfterOptionChanged()
         {
-            Loans.ResetLoans();
-            Parks.ResetVisitorsLevelupRequirement();
-            Industries.ResetProductionLevelupRequirement();
-
+            ResetAll();
             Parameters = new GameSpeedParameters(values.GameSpeedIndex);
+            SetAll();
+            values.Save();
+        }
 
+        public void SetAll()
+        {
             Loans.SetLoans();
             Parks.SetVisitorsLevelupRequirement();
             Industries.SetProductionLevelupRequirement();
             Prefabs.SetBldPrefabs();
             TimeFlow.SetTimeFlow();
-            values.Save();
+
+            Logger.Write();
+        }
+
+        public void ResetAll()
+        {
+            Loans.ResetLoans();
+            Parks.ResetVisitorsLevelupRequirement();
+            Industries.ResetProductionLevelupRequirement();
+            Prefabs.ResetBldPrefabs();
+            TimeFlow.ResetTimeFlow();
+
+            Logger.Write();
         }
     }
 }

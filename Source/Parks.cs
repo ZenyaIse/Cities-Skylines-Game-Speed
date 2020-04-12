@@ -19,10 +19,15 @@ namespace GameSpeedMod
             for (int i = 0; i < infosCount; i++)
             {
                 //sb.Append(dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement.ToString() + ",");
-                visitorLevelupRequirement_orig[i] = dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement;
-                dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement = visitorLevelupRequirement_orig[i] * gsm.Parameters.LevelupRequirement / 100;
+                //Original values: 0,0,0,0,0,0,0,500,2500,5000,10000,0,0,500,2500,5000,10000,0,0,500,2500,5000,10000,0,0,500,2500,5000,10000,0
+                int oldValue = dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement;
+                int newValue = oldValue * gsm.Parameters.LevelupRequirement / 100;
+
+                visitorLevelupRequirement_orig[i] = oldValue;
+                dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement = newValue;
+
+                Logger.Add(dm.m_properties.m_parkProperties.name, "visitorLevelupRequirement" + i.ToString(), oldValue, newValue);
             }
-            //Original values: 0,0,0,0,0,0,0,500,2500,5000,10000,0,0,500,2500,5000,10000,0,0,500,2500,5000,10000,0,0,500,2500,5000,10000,0
             //Debug.Log(sb.ToString());
         }
 
@@ -37,6 +42,8 @@ namespace GameSpeedMod
             }
 
             visitorLevelupRequirement_orig = null;
+
+            Logger.Add("Reset visitorLevelupRequirement");
         }
     }
 }
