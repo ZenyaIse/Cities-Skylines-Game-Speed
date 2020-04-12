@@ -9,7 +9,7 @@ namespace GameSpeedMod
         {
             if (resource == EconomyResource.RewardAmount)
             {
-                if (Singleton<GameSpeedManager>.instance.values.NoReward) return 0;
+                if (Singleton<GameSpeedManager>.instance.values.IsHardMode) return 0;
             }
 
             return amount;

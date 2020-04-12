@@ -36,12 +36,6 @@ namespace GameSpeedMod
                 gsom.AfterOptionChanged();
             });
 
-            helper.AddCheckbox("No rewards for unlocking Milestones", gsom.values.NoReward, delegate (bool isChecked)
-            {
-                gsom.values.NoReward = isChecked;
-                gsom.AfterOptionChanged();
-            });
-
             helper.AddCheckbox("Hard Mode", gsom.values.IsHardMode, delegate (bool isChecked)
             {
                 gsom.values.IsHardMode = isChecked;

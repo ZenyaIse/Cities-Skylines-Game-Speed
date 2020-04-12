@@ -14,7 +14,6 @@ namespace GameSpeedMod
                 GameSpeedManager m = Singleton<GameSpeedManager>.instance;
                 s.WriteInt32(m.values.GameSpeedIndex);
                 s.WriteBool(m.values.IsMilestonePopulationThreshholdUnscaled);
-                s.WriteBool(m.values.NoReward);
                 s.WriteBool(m.values.IsHardMode);
             }
 
@@ -23,7 +22,6 @@ namespace GameSpeedMod
                 GameSpeedManager m = Singleton<GameSpeedManager>.instance;
                 m.values.GameSpeedIndex = s.ReadInt32();
                 m.values.IsMilestonePopulationThreshholdUnscaled = s.ReadBool();
-                m.values.NoReward = s.ReadBool();
                 m.values.IsHardMode = s.ReadBool();
             }
 

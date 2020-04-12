@@ -10,7 +10,6 @@ namespace GameSpeedMod
         public int Version = 0;
         public int GameSpeedIndex = 0;
         public bool IsMilestonePopulationThreshholdUnscaled = false;
-        public bool NoReward = false;
         public bool IsHardMode = false;
 
         private const string optionsFileName = "GameSpeed.xml";
