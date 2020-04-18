@@ -5,7 +5,7 @@ namespace GameSpeedMod
 {
     public class Citizens : Singleton<Citizens>
     {
-        public void SimulationStepImpl()
+        public void OnAfterSimulationFrame()
         {
             int m10 = Singleton<GameSpeedManager>.instance.Parameters.TimeFlowMultiplier_x10;
 
@@ -39,14 +39,14 @@ namespace GameSpeedMod
 
         private void updateAge(uint citizenID, ref Citizen data)
         {
-            int num = data.Age - 1;
-            if (num < 0 || num == 15 || num == 45 || num == 90 || num == 180)
+            int num = data.Age;
+            if (num < 0 || num % 15 == 0)
             {
-                // let do FinishSchoolOrWork by vanilla
+                // Just Finished SchoolOrWork etc. (by vanilla)
             }
             else
             {
-                data.Age = num;
+                data.Age = num - 1;
             }
         }
     }

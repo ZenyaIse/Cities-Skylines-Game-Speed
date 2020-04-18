@@ -7,7 +7,7 @@ namespace GameSpeedMod
     {
         public override void OnAfterSimulationFrame()
         {
-            Singleton<Citizens>.instance.SimulationStepImpl();
+            Singleton<Citizens>.instance.OnAfterSimulationFrame();
         }
     }
 }
