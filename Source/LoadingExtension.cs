@@ -16,7 +16,8 @@ namespace GameSpeedMod
 
             if (mode == LoadMode.NewGame || mode == LoadMode.NewGameFromScenario)
             {
-                int moneyToAdd = 40 * (gsm.Parameters.ConstructionCostMultiplier - 1) * 100000;
+                int cash_thousands = (int)(Singleton<EconomyManager>.instance.LastCashAmount / 100000);
+                int moneyToAdd = (cash_thousands * 40 * (gsm.Parameters.ConstructionCostMultiplier - 1) / 70) * 100000;
                 Singleton<EconomyManager>.instance.AddResource(EconomyManager.Resource.LoanAmount, moneyToAdd, ItemClass.Service.None, ItemClass.SubService.None, ItemClass.Level.None);
             }
 
