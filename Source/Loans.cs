@@ -27,7 +27,7 @@ namespace GameSpeedMod
                 em.m_properties.m_banks[i].m_loanOffers[0].m_amount = newAmount;
                 em.m_properties.m_banks[i].m_loanOffers[0].m_length = newLength;
 
-                Logger.Add(em.m_properties.m_banks[i].m_bankName, "amount", oldAmount, newAmount, "length", oldLength, newLength);
+                ModLogger.Add(em.m_properties.m_banks[i].m_bankName, "amount", oldAmount, newAmount, "length", oldLength, newLength);
             }
 
             isAlreadySet = true;
@@ -48,7 +48,7 @@ namespace GameSpeedMod
                 em.m_properties.m_banks[i].m_loanOffers[0].m_length = Mathf.RoundToInt(value * 2f / (1 + gs.Parameters.LoanMultiplier));
             }
 
-            Logger.Add("Reset loans");
+            ModLogger.Add("Reset loans");
 
             isAlreadySet = false;
         }

@@ -64,7 +64,7 @@ namespace GameSpeedMod
             Prefabs.SetBldPrefabs();
             TimeFlow.SetTimeFlow();
 
-            Logger.Write();
+            ModLogger.Write();
         }
 
         public void ResetAll()
@@ -75,7 +75,7 @@ namespace GameSpeedMod
             Prefabs.ResetBldPrefabs();
             TimeFlow.ResetTimeFlow();
 
-            Logger.Write();
+            ModLogger.Write();
         }
     }
 }

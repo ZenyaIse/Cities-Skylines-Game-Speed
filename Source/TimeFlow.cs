@@ -11,7 +11,7 @@ namespace GameSpeedMod
             {
                 int m = Singleton<GameSpeedManager>.instance.Parameters.TimeFlowMultiplier_x10;
                 setTimePerFrame(m);
-                Logger.Add("Time flow (x times)", m / 10);
+                ModLogger.Add("Time flow (x times)", m / 10);
             }
         }
 
@@ -20,7 +20,7 @@ namespace GameSpeedMod
             if (SimulationManager.exists && SimulationManager.instance.m_ThreadingWrapper != null)
             {
                 setTimePerFrame(10);
-                Logger.Add("Reset time flow");
+                ModLogger.Add("Reset time flow");
             }
         }
 

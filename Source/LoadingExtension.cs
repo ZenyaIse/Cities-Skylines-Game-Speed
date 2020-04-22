@@ -21,7 +21,7 @@ namespace GameSpeedMod
                 Singleton<EconomyManager>.instance.AddResource(EconomyManager.Resource.LoanAmount, moneyToAdd, ItemClass.Service.None, ItemClass.SubService.None, ItemClass.Level.None);
             }
 
-            Logger.Write();
+            ModLogger.Write();
         }
 
         public override void OnLevelUnloading()

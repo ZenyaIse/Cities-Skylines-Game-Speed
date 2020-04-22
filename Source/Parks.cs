@@ -26,7 +26,7 @@ namespace GameSpeedMod
                 visitorLevelupRequirement_orig[i] = oldValue;
                 dm.m_properties.m_parkProperties.m_parkLevelInfo[i].m_visitorLevelupRequirement = newValue;
 
-                Logger.Add(dm.m_properties.m_parkProperties.name, "visitorLevelupRequirement" + i.ToString(), oldValue, newValue);
+                ModLogger.Add(dm.m_properties.m_parkProperties.name, "visitorLevelupRequirement" + i.ToString(), oldValue, newValue);
             }
             //Debug.Log(sb.ToString());
         }
@@ -43,7 +43,7 @@ namespace GameSpeedMod
 
             visitorLevelupRequirement_orig = null;
 
-            Logger.Add("Reset visitorLevelupRequirement");
+            ModLogger.Add("Reset visitorLevelupRequirement");
         }
     }
 }

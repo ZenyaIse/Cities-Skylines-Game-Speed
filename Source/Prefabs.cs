@@ -11,7 +11,7 @@ namespace GameSpeedMod
             int m = Singleton<GameSpeedManager>.instance.Parameters.ConstructionTimeMultiplier;
             if (setBldPrefabs(m))
             {
-                Logger.Add("All private buildings", "construction time", constructionTimeVanilla, constructionTimeVanilla * m);
+                ModLogger.Add("All private buildings", "construction time", constructionTimeVanilla, constructionTimeVanilla * m);
             }
         }
 
@@ -19,7 +19,7 @@ namespace GameSpeedMod
         {
             if (setBldPrefabs(1))
             {
-                Logger.Add("Reset all private buildings construction time", constructionTimeVanilla);
+                ModLogger.Add("Reset all private buildings construction time", constructionTimeVanilla);
             }
         }
 

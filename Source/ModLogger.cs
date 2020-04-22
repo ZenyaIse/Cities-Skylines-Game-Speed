@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameSpeedMod
 {
-    public static class Logger
+    public static class ModLogger
     {
         private static StringBuilder sb;
 

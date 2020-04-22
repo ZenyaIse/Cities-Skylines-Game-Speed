@@ -65,7 +65,7 @@
     <Compile Include="LevelUp.cs" />
     <Compile Include="LoadingExtension.cs" />
     <Compile Include="Loans.cs" />
-    <Compile Include="Logger.cs" />
+    <Compile Include="ModLogger.cs" />
     <Compile Include="Milestones.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="OilAndOreResource.cs" />

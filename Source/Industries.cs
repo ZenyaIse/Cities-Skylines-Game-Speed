@@ -26,7 +26,7 @@ namespace GameSpeedMod
                 industryLevelInfo_orig[i] = oldValue;
                 dm.m_properties.m_parkProperties.m_industryLevelInfo[i].m_productionLevelupRequirement = newValue;
 
-                Logger.Add(dm.m_properties.m_parkProperties.name, "productionLevelupRequirement" + i.ToString(), oldValue / 1000, newValue / 1000);
+                ModLogger.Add(dm.m_properties.m_parkProperties.name, "productionLevelupRequirement" + i.ToString(), oldValue / 1000, newValue / 1000);
             }
             //Debug.Log(sb.ToString());
         }
@@ -43,7 +43,7 @@ namespace GameSpeedMod
 
             industryLevelInfo_orig = null;
 
-            Logger.Add("Reset productionLevelupRequirement");
+            ModLogger.Add("Reset productionLevelupRequirement");
         }
     }
 }
