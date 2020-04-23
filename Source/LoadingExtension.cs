@@ -12,6 +12,7 @@ namespace GameSpeedMod
             if (mode == LoadMode.NewGame || mode == LoadMode.LoadGame || mode == LoadMode.NewGameFromScenario)
             {
                 gsm.SetAll();
+                MainToolbar.mainToolbar.RefreshPanel();
             }
 
             if (mode == LoadMode.NewGame || mode == LoadMode.NewGameFromScenario)

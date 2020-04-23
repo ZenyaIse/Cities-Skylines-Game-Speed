@@ -54,6 +54,15 @@ namespace GameSpeedMod
             Parameters = new GameSpeedParameters(values.GameSpeedIndex);
             SetAll();
             values.Save();
+
+            try
+            {
+                MainToolbar.mainToolbar.RefreshPanel();
+            }
+            catch
+            {
+                // Ignore
+            }
         }
 
         public void SetAll()
