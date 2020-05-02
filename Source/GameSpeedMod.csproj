@@ -62,6 +62,7 @@
     <Compile Include="GameSpeedOptionsSerializable.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Industries.cs" />
+    <Compile Include="Landscaping.cs" />
     <Compile Include="LevelUp.cs" />
     <Compile Include="LoadingExtension.cs" />
     <Compile Include="Loans.cs" />

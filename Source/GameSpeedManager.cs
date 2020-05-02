@@ -72,6 +72,7 @@ namespace GameSpeedMod
             Industries.SetProductionLevelupRequirement();
             Prefabs.SetBldPrefabs();
             TimeFlow.SetTimeFlow();
+            Landscaping.SetLanscapingCost();
 
             ModLogger.Write();
         }
@@ -83,6 +84,7 @@ namespace GameSpeedMod
             Industries.ResetProductionLevelupRequirement();
             Prefabs.ResetBldPrefabs();
             TimeFlow.ResetTimeFlow();
+            Landscaping.ResetLanscapingCost();
 
             ModLogger.Write();
         }
