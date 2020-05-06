@@ -5,8 +5,8 @@ namespace GameSpeedMod
 {
     public class Mod : IUserMod
     {
-        public const string ModNameEng = "City Growth Speed Mod";
-        public const string Version = "2020/4/30";
+        public const string ModNameEng = "Game Speed Mod";
+        public const string Version = "2020/5/6";
 
         public string Name
         {
@@ -15,7 +15,7 @@ namespace GameSpeedMod
 
         public string Description
         {
-            get { return "Makes milestones progress and city growth slower (ver. " + Version + ")"; }
+            get { return "Slower milestones progress and city growth (ver. " + Version + ")"; }
         }
 
         #region Options UI
@@ -30,11 +30,15 @@ namespace GameSpeedMod
                 gsom.AfterOptionChanged();
             });
 
-            helper.AddCheckbox("Do not scale milestone threshhold with water area ratio", gsom.values.IsMilestonePopulationThreshholdUnscaled, delegate (bool isChecked)
+            helper.AddSpace(20);
+
+            helper.AddCheckbox("Do not scale milestone population threshold with water area ratio", gsom.values.IsMilestonePopulationThreshholdUnscaled, delegate (bool isChecked)
             {
                 gsom.values.IsMilestonePopulationThreshholdUnscaled = isChecked;
                 gsom.AfterOptionChanged();
             });
+
+            helper.AddSpace(20);
 
             helper.AddCheckbox("Hard Mode", gsom.values.IsHardMode, delegate (bool isChecked)
             {
