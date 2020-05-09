@@ -7,8 +7,8 @@ namespace GameSpeedMod
 {
     public class GameSpeedOptionsSerializable
     {
-        public int GameSpeedIndex = 0;
-        public bool IsMilestonePopulationThresholdUnscaled = false;
+        public int GameSpeedIndex = 3;
+        public bool IsMilestonePopulationThresholdUnscaled = true;
         public bool IsHardMode = false;
 
         private const string optionsFileName = "GameSpeed.xml";
