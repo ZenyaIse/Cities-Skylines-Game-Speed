@@ -13,7 +13,7 @@ namespace GameSpeedMod
             {
                 GameSpeedManager m = Singleton<GameSpeedManager>.instance;
                 s.WriteInt32(m.values.GameSpeedIndex);
-                s.WriteBool(m.values.IsMilestonePopulationThreshholdUnscaled);
+                s.WriteBool(m.values.IsMilestonePopulationThresholdUnscaled);
                 s.WriteBool(m.values.IsHardMode);
             }
 
@@ -21,7 +21,8 @@ namespace GameSpeedMod
             {
                 GameSpeedManager m = Singleton<GameSpeedManager>.instance;
                 m.values.GameSpeedIndex = s.ReadInt32();
-                m.values.IsMilestonePopulationThreshholdUnscaled = s.ReadBool();
+                m.Parameters = new GameSpeedParameters(m.values.GameSpeedIndex);
+                m.values.IsMilestonePopulationThresholdUnscaled = s.ReadBool();
                 m.values.IsHardMode = s.ReadBool();
             }
 
@@ -37,6 +38,11 @@ namespace GameSpeedMod
         public GameSpeedParameters Parameters;
 
         private GameSpeedManager()
+        {
+            ReadFromFile();
+        }
+
+        public void ReadFromFile()
         {
             values = GameSpeedOptionsSerializable.CreateFromFile();
 

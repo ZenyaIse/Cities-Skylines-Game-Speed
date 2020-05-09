@@ -8,9 +8,21 @@ namespace GameSpeedMod
     {
         public override int OnGetPopulationTarget(int originalTarget, int scaledTarget)
         {
-            GameSpeedManager gs = Singleton<GameSpeedManager>.instance;
+            if (!LoadingExtension.IsLeveLoaded) return 999999;
 
-            return (int)Math.Round((gs.values.IsMilestonePopulationThreshholdUnscaled ? originalTarget : scaledTarget) * gs.Parameters.MilestonePopulationThreshholdMultiplier);
+            GameSpeedManager gs = Singleton<GameSpeedManager>.instance;
+            int value;
+
+            if (gs.values.IsMilestonePopulationThresholdUnscaled)
+            {
+                value = (int)Math.Round(originalTarget * gs.Parameters.MilestonePopulationThreshholdMultiplier);
+            }
+            else
+            {
+                value = (int)Math.Round(scaledTarget * gs.Parameters.MilestonePopulationThreshholdMultiplier);
+            }
+
+            return value;
         }
     }
 }

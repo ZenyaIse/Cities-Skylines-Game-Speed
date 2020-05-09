@@ -38,6 +38,8 @@ namespace GameSpeedMod
                 {
                     DataSerializer.Deserialize<GameSpeedManager.Data>(stream, DataSerializer.Mode.Memory);
                 }
+
+                Mod.UpdateUI();
             }
             catch (Exception ex)
             {

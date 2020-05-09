@@ -5,6 +5,8 @@ namespace GameSpeedMod
 {
     public class LoadingExtension : LoadingExtensionBase
     {
+        public static bool IsLeveLoaded = false;
+
         public override void OnLevelLoaded(LoadMode mode)
         {
             GameSpeedManager gsm = Singleton<GameSpeedManager>.instance;
@@ -12,7 +14,6 @@ namespace GameSpeedMod
             if (mode == LoadMode.NewGame || mode == LoadMode.LoadGame || mode == LoadMode.NewGameFromScenario)
             {
                 gsm.SetAll();
-                MainToolbar.mainToolbar.RefreshPanel();
             }
 
             if (mode == LoadMode.NewGame || mode == LoadMode.NewGameFromScenario)
@@ -22,12 +23,21 @@ namespace GameSpeedMod
                 Singleton<EconomyManager>.instance.AddResource(EconomyManager.Resource.LoanAmount, moneyToAdd, ItemClass.Service.None, ItemClass.SubService.None, ItemClass.Level.None);
             }
 
+            IsLeveLoaded = true;
+
+            MainToolbar.mainToolbar.RefreshPanel();
+
             ModLogger.Write();
         }
 
         public override void OnLevelUnloading()
         {
             Singleton<GameSpeedManager>.instance.ResetAll();
+
+            Singleton<GameSpeedManager>.instance.ReadFromFile();
+            Mod.UpdateUI();
+
+            IsLeveLoaded = false;
         }
     }
 }
