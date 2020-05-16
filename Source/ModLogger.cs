@@ -39,6 +39,15 @@ namespace GameSpeedMod
             sb.AppendLine(string.Format("{0}: {1} {2} -> {3}, {4} {5} -> {6}", name, fieldName, beforeValue, afterValue, fieldName2, beforeValue2, afterValue2));
         }
 
+        public static void Add(string name,
+            string fieldName, object beforeValue, object afterValue,
+            object fieldName2, object beforeValue2, object afterValue2,
+            object fieldName3, object beforeValue3, object afterValue3)
+        {
+            initStringBuilderIfNull();
+            sb.AppendLine(string.Format("{0}: {1} {2} -> {3}, {4} {5} -> {6}, {7} {8} -> {9}", name, fieldName, beforeValue, afterValue, fieldName2, beforeValue2, afterValue2, fieldName3, beforeValue3, afterValue3));
+        }
+
         public static void Write()
         {
             if (sb != null)

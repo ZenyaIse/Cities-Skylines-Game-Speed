@@ -79,6 +79,7 @@ namespace GameSpeedMod
             Prefabs.SetBldPrefabs();
             TimeFlow.SetTimeFlow();
             Landscaping.SetLanscapingCost();
+            Library.Init();
 
             ModLogger.Write();
         }
@@ -91,6 +92,7 @@ namespace GameSpeedMod
             Prefabs.ResetBldPrefabs();
             TimeFlow.ResetTimeFlow();
             Landscaping.ResetLanscapingCost();
+            Library.Reset();
 
             ModLogger.Write();
         }

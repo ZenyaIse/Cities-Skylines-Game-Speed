@@ -64,6 +64,7 @@
     <Compile Include="Industries.cs" />
     <Compile Include="Landscaping.cs" />
     <Compile Include="LevelUp.cs" />
+    <Compile Include="Library.cs" />
     <Compile Include="LoadingExtension.cs" />
     <Compile Include="Loans.cs" />
     <Compile Include="ModLogger.cs" />
