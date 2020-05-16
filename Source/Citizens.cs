@@ -7,14 +7,7 @@ namespace GameSpeedMod
     {
         public void OnAfterSimulationFrame()
         {
-            int m10 = Singleton<GameSpeedManager>.instance.Parameters.TimeFlowMultiplier_x10;
-
-            if (m10 <= 10)
-            {
-                return;
-            }
-
-            if (Singleton<SimulationManager>.instance.m_randomizer.Int32(100u) < 1000 / m10)
+            if (Singleton<GameSpeedManager>.instance.Parameters.TimeFlowDice())
             {
                 return;
             }

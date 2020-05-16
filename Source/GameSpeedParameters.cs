@@ -1,4 +1,6 @@
-﻿namespace GameSpeedMod
+﻿using ColossalFramework;
+
+namespace GameSpeedMod
 {
     public class GameSpeedParameters
     {
@@ -88,6 +90,22 @@
                     DemandDropAfterBuildingCreated = 0;
                     break;
             }
+        }
+
+        // The slower time, the more chance to get false
+        public bool TimeFlowDice()
+        {
+            if (TimeFlowMultiplier_x10 <= 10)
+            {
+                return true;
+            }
+
+            if (Singleton<SimulationManager>.instance.m_randomizer.Int32(100u) < 1000 / TimeFlowMultiplier_x10)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
