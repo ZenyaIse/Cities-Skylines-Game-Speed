@@ -1,5 +1,4 @@
 ﻿using ColossalFramework;
-using System.Collections.Generic;
 
 namespace GameSpeedMod
 {
@@ -15,7 +14,7 @@ namespace GameSpeedMod
 
             float k = Singleton<GameSpeedManager>.instance.Parameters.TimeFlowMultiplier_x10 * 0.1f;
 
-            foreach (LibraryAI libAI in LibraryBuildings())
+            foreach (LibraryAI libAI in Helper.PrefabBuildingAIs(typeof(LibraryAI)))
             {
                 percentageChanceElementaryEducation_orig = libAI.m_percentageChanceElementaryEducation;
                 percentageChanceHighschoolEducation_orig = libAI.m_percentageChanceHighschoolEducation;
@@ -36,7 +35,7 @@ namespace GameSpeedMod
         {
             if (float.IsNaN(percentageChanceElementaryEducation_orig)) return; // Not set
 
-            foreach (LibraryAI libAI in LibraryBuildings())
+            foreach (LibraryAI libAI in Helper.PrefabBuildingAIs(typeof(LibraryAI)))
             {
                 libAI.m_percentageChanceElementaryEducation = percentageChanceElementaryEducation_orig;
                 libAI.m_percentageChanceHighschoolEducation = percentageChanceHighschoolEducation_orig;
@@ -48,21 +47,6 @@ namespace GameSpeedMod
             percentageChanceElementaryEducation_orig = float.NaN;
             percentageChanceHighschoolEducation_orig = float.NaN;
             percentageChanceUniversityEducation_orig = float.NaN;
-        }
-
-        private static IEnumerable<LibraryAI> LibraryBuildings()
-        {
-            int prefabsCount = PrefabCollection<BuildingInfo>.PrefabCount();
-            for (uint i = 0; i < prefabsCount; i++)
-            {
-                BuildingInfo bi = PrefabCollection<BuildingInfo>.GetPrefab(i);
-                if (bi == null) continue;
-
-                LibraryAI libAI = bi.m_buildingAI as LibraryAI;
-                if (libAI == null) continue;
-
-                yield return libAI;
-            }
         }
     }
 }

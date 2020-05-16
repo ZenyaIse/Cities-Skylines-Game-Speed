@@ -12,9 +12,10 @@ namespace GameSpeedMod
         public static void SetBldPrefabs()
         {
             int m = Singleton<GameSpeedManager>.instance.Parameters.ConstructionTimeMultiplier;
-            if (setConstructionTime(m))
+            int count = setConstructionTime(m);
+            if (count > 0)
             {
-                ModLogger.Add("All private buildings", "construction time", constructionTimeVanilla, constructionTimeVanilla * m);
+                ModLogger.Add("All private buildings (" + count.ToString() + ")", "construction time", constructionTimeVanilla, constructionTimeVanilla * m);
             }
 
             updateCemetries(true);
@@ -22,7 +23,7 @@ namespace GameSpeedMod
 
         public static void ResetBldPrefabs()
         {
-            if (setConstructionTime(1))
+            if (setConstructionTime(1) > 0)
             {
                 ModLogger.Add("Reset all private buildings construction time", constructionTimeVanilla);
             }
@@ -30,24 +31,17 @@ namespace GameSpeedMod
             updateCemetries(false);
         }
 
-        private static bool setConstructionTime(int constructionTimeMultiplier)
+        private static int setConstructionTime(int constructionTimeMultiplier)
         {
             int count = 0;
 
-            int prebabsCount = PrefabCollection<BuildingInfo>.PrefabCount();
-            for (uint i = 0; i < prebabsCount; i++)
+            foreach (PrivateBuildingAI ai in Helper.PrefabBuildingAIs(typeof(PrivateBuildingAI)))
             {
-                BuildingInfo bi = PrefabCollection<BuildingInfo>.GetPrefab(i);
-                if (bi == null) continue;
-
-                PrivateBuildingAI ai = bi.m_buildingAI as PrivateBuildingAI;
-                if (ai == null) continue;
-
                 ai.m_constructionTime = constructionTimeVanilla * constructionTimeMultiplier;
                 count++;
             }
 
-            return count > 0;
+            return count;
         }
 
         private static void updateCemetries(bool isSet)
@@ -83,45 +77,39 @@ namespace GameSpeedMod
             }
 
             // Decrease Cemetery and Crematory capacities
-            int bldPrefabsCount = PrefabCollection<BuildingInfo>.PrefabCount();
-            for (uint i = 0; i < bldPrefabsCount; i++)
+            foreach (CemeteryAI cemetryAI in Helper.PrefabBuildingAIs(typeof(CemeteryAI)))
             {
-                BuildingInfo bi = PrefabCollection<BuildingInfo>.GetPrefab(i);
-                if (bi == null) continue;
-
-                if (bi.m_buildingAI as CemeteryAI == null) continue;
-
-                string bldName = ((PlayerBuildingAI)bi.m_buildingAI).name;
+                string bldName = cemetryAI.name;
 
                 string key = bldName + "_graveCount";
                 if (isSet)
                 {
-                    int prevValue = ((CemeteryAI)bi.m_buildingAI).m_graveCount;
+                    int prevValue = cemetryAI.m_graveCount;
                     int newValue = prevValue * 10 / t10;
                     origValues[key] = prevValue;
                     ModLogger.Add(bldName, "graveCount", prevValue, newValue);
-                    ((CemeteryAI)bi.m_buildingAI).m_graveCount = newValue;
+                    cemetryAI.m_graveCount = newValue;
                 }
                 else if (origValues.ContainsKey(key))
                 {
                     ModLogger.Add(bldName, "Reset graveCount");
-                    ((CemeteryAI)bi.m_buildingAI).m_graveCount = (int)origValues[key];
+                    cemetryAI.m_graveCount = (int)origValues[key];
                     origValues.Remove(key);
                 }
 
                 key = bldName + "_corpseCapacity";
                 if (isSet)
                 {
-                    int prevValue = ((CemeteryAI)bi.m_buildingAI).m_corpseCapacity;
+                    int prevValue = cemetryAI.m_corpseCapacity;
                     int newValue = prevValue * 10 / t10;
                     origValues[key] = prevValue;
                     ModLogger.Add(bldName, "corpseCapacity", prevValue, newValue);
-                    ((CemeteryAI)bi.m_buildingAI).m_corpseCapacity = newValue;
+                    cemetryAI.m_corpseCapacity = newValue;
                 }
                 else if (origValues.ContainsKey(key))
                 {
                     ModLogger.Add(bldName, "Reset corpseCapacity");
-                    ((CemeteryAI)bi.m_buildingAI).m_corpseCapacity = (int)origValues[key];
+                    cemetryAI.m_corpseCapacity = (int)origValues[key];
                     origValues.Remove(key);
                 }
             }
