@@ -35,7 +35,7 @@ namespace GameSpeedMod
         {
             int count = 0;
 
-            foreach (PrivateBuildingAI ai in Helper.PrefabBuildingAIs(typeof(PrivateBuildingAI)))
+            foreach (PrivateBuildingAI ai in Helper.PrefabBuildingAIs<PrivateBuildingAI>())
             {
                 ai.m_constructionTime = constructionTimeVanilla * constructionTimeMultiplier;
                 count++;
@@ -77,7 +77,7 @@ namespace GameSpeedMod
             }
 
             // Decrease Cemetery and Crematory capacities
-            foreach (CemeteryAI cemetryAI in Helper.PrefabBuildingAIs(typeof(CemeteryAI)))
+            foreach (CemeteryAI cemetryAI in Helper.PrefabBuildingAIs<CemeteryAI>())
             {
                 string bldName = cemetryAI.name;
 

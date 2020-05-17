@@ -14,7 +14,7 @@ namespace GameSpeedMod
 
             float k = Singleton<GameSpeedManager>.instance.Parameters.TimeFlowMultiplier_x10 * 0.1f;
 
-            foreach (LibraryAI libAI in Helper.PrefabBuildingAIs(typeof(LibraryAI)))
+            foreach (LibraryAI libAI in Helper.PrefabBuildingAIs<LibraryAI>())
             {
                 percentageChanceElementaryEducation_orig = libAI.m_percentageChanceElementaryEducation;
                 percentageChanceHighschoolEducation_orig = libAI.m_percentageChanceHighschoolEducation;
@@ -35,7 +35,7 @@ namespace GameSpeedMod
         {
             if (float.IsNaN(percentageChanceElementaryEducation_orig)) return; // Not set
 
-            foreach (LibraryAI libAI in Helper.PrefabBuildingAIs(typeof(LibraryAI)))
+            foreach (LibraryAI libAI in Helper.PrefabBuildingAIs<LibraryAI>())
             {
                 libAI.m_percentageChanceElementaryEducation = percentageChanceElementaryEducation_orig;
                 libAI.m_percentageChanceHighschoolEducation = percentageChanceHighschoolEducation_orig;
